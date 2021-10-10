@@ -7,12 +7,15 @@
 <script lang="ts">
 import mapboxgl, { Map } from 'mapbox-gl';
 import { Component, Vue } from 'vue-property-decorator';
+import { Stations } from '@/types/stations';
+import { createStationMarker } from '@/mapElements/markers/station';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianVyeWJhYmVua28iLCJhIjoiY2t1aXEybmI0MGNiODMzbzZjNGtzdXlqNSJ9.gS-vfgoZp8GARaYJN2j-1w';
 
 @Component
 export default class MapGl extends Vue {
-  map: Map | null = null;
+  map: Map | undefined = undefined;
+  stations: Stations | null = null;
 
   mounted(): void {
     this.map = new mapboxgl.Map({
@@ -22,10 +25,25 @@ export default class MapGl extends Vue {
       zoom: 9, // starting zoom
     });
     this.map.on('click', (e) => console.log(e));
+    this.loadStations();
+  }
+
+  async loadStations(): Promise<void> {
+    try {
+      const { data } = await this.$axios.get<Stations>('/data/stations.json');
+      this.stations = data;
+
+      this.stations.forEach((station) => {
+        if (!this.map) return;
+        createStationMarker(this.map, station);
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 </script>
 
-<style scoped>
+<style>
 #map{position: absolute; top: 0; bottom: 0; width: 100%;}
 </style>

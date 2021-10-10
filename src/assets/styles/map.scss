@@ -1,0 +1,22 @@
+.map-marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: red;
+  cursor: pointer;
+
+  &:hover {
+    .map-marker__tooltip {
+      display: block;
+    }
+  }
+
+  &__tooltip {
+    display: none;
+    position: absolute;
+    top: -18px;
+    left: 0;
+    width: fit-content;
+    white-space: nowrap;
+  }
+}
