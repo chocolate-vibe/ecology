@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import axios, { AxiosStatic } from 'axios';
+import VueApexCharts from 'vue-apexcharts';
 import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@/assets/styles/map.scss';
 
 Vue.config.productionTip = false;
+Vue.use(VueApexCharts);
 
 const axiosConfig = {
   baseURL: '.',

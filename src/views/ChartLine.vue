@@ -1,17 +1,23 @@
 <template>
   <div class="line-chart__wrap">
-    <line-chart :chartData="chartData" :options="chartOptions" :height="200" />
+    <line-chart :chartData="chartData" :options="chartOptions" :height="150" />
+    <apex-chart-line/>
+    <apex-chart-line-date/>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { ChartOptions, ChartData } from 'chart.js';
 import LineChart from '@/components/charts/Line.vue';
+import ApexChartLine from '@/components/charts/ApexChartLine.vue';
+import ApexChartLineDate from '@/components/charts/ApexChartLineDate.vue';
 import { WindData } from '@/types/wind-data';
 
 @Component({
   components: {
     LineChart,
+    ApexChartLine,
+    ApexChartLineDate,
   },
 })
 export default class LineChartWind extends Vue {
@@ -75,6 +81,7 @@ export default class LineChartWind extends Vue {
         fill: true,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1,
+        pointRadius: 1,
       }],
     };
   }
