@@ -56,7 +56,7 @@ export default class LineChartWind extends Vue {
       // eslint-disable-next-line no-unused-expressions
       this.windDataSet?.forEach((data: WindData) => {
         this.xLabels.push(data.datetime);
-        this.yValues.push(data.wind_speed);
+        this.yValues.push(data.windSpeed);
       });
   }
 
