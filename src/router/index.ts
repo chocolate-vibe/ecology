@@ -44,7 +44,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const requireRoles = to?.meta?.roles;
   if (!requireRoles) next();
-
+  console.log(Vue.prototype);
   const token = localStorage.getItem('auth_token');
   if (token) {
     const user: User = jwtDecode(token);
