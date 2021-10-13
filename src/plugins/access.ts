@@ -6,10 +6,10 @@ import jwtDecode from 'jwt-decode';
 import { User } from '@/types/models/User';
 import { Roles } from '@/enums/roles.enum';
 
-const token = localStorage.getItem('auth_token');
 const AccessPlugin = {
   install(Vue: any, options: any) {
     Vue.prototype.$isAdmin = (): boolean => {
+      const token = localStorage.getItem('auth_token');
       if (token) {
         const user: User = jwtDecode(token);
         return user.role?.value === Roles.ADMIN;
@@ -18,6 +18,7 @@ const AccessPlugin = {
     };
 
     Vue.prototype.$isEcologist = (): boolean => {
+      const token = localStorage.getItem('auth_token');
       if (token) {
         const user: User = jwtDecode(token);
         return user.role?.value === Roles.ECOLOGIST;
@@ -26,6 +27,7 @@ const AccessPlugin = {
     };
 
     Vue.prototype.$user = (): User | undefined => {
+      const token = localStorage.getItem('auth_token');
       if (token) jwtDecode(token);
       return undefined;
     };
@@ -36,7 +38,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $isAdmin: any,
     $isEcologist: any,
-    $user: User
+    $user: any,
   }
 }
 
