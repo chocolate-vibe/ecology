@@ -3,6 +3,7 @@
     <line-chart :chartData="chartData" :options="chartOptions" :height="150" />
     <apex-chart-line/>
     <apex-chart-line-date/>
+    <apex-chart-line-date-example/>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +12,7 @@ import { ChartOptions, ChartData } from 'chart.js';
 import LineChart from '@/components/charts/Line.vue';
 import ApexChartLine from '@/components/charts/ApexChartLine.vue';
 import ApexChartLineDate from '@/components/charts/ApexChartLineDate.vue';
+import ApexChartLineDateExample from '@/components/charts/examples/ApexChartLineDate.vue';
 import { WindData } from '@/types/wind-data';
 
 @Component({
@@ -18,6 +20,7 @@ import { WindData } from '@/types/wind-data';
     LineChart,
     ApexChartLine,
     ApexChartLineDate,
+    ApexChartLineDateExample,
   },
 })
 export default class LineChartWind extends Vue {
