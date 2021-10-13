@@ -1,13 +1,12 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import jwtDecode from 'jwt-decode';
+import { VueConstructor } from 'vue';
 import { User } from '@/types/models/User';
 import { Roles } from '@/enums/roles.enum';
 
 const AccessPlugin = {
-  install(Vue: any, options: any) {
+  install(Vue: VueConstructor) {
     Vue.prototype.$isAdmin = (): boolean => {
       const token = localStorage.getItem('auth_token');
       if (token) {
@@ -28,7 +27,7 @@ const AccessPlugin = {
 
     Vue.prototype.$user = (): User | undefined => {
       const token = localStorage.getItem('auth_token');
-      if (token) jwtDecode(token);
+      if (token) return jwtDecode(token);
       return undefined;
     };
   },
@@ -36,9 +35,9 @@ const AccessPlugin = {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $isAdmin: any,
-    $isEcologist: any,
-    $user: any,
+    $isAdmin: boolean,
+    $isEcologist: boolean,
+    $user: User | undefined,
   }
 }
 

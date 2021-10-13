@@ -7,7 +7,6 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-// import { ChartOptions, ChartData } from 'chart.js';
 import LineChart from '@/components/charts/Line.vue';
 import ApexChartLine from '@/components/charts/ApexChartLine.vue';
 import ApexChartLineDate from '@/components/charts/ApexChartLineDate.vue';
