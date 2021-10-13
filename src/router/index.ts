@@ -4,11 +4,11 @@ import VueRouter, { RouteConfig } from 'vue-router';
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home,
-  // },
+  {
+    path: '/',
+    name: 'Map',
+    component: () => import(/* webpackChunkName: "MapGl" */ '@/views/MapGl.vue'),
+  },
 ];
 
 const router = new VueRouter({
