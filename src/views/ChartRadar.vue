@@ -95,6 +95,7 @@ export default class RadarChartWind extends Vue {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async mounted() {
+    this.$isAdmin();
     await this.fetchDataSets();
     // eslint-disable-next-line no-unused-expressions
     if (this.windDataSet) {

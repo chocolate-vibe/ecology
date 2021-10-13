@@ -4,12 +4,14 @@ import VueApexCharts from 'vue-apexcharts';
 import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
+import AccessPlugin from '@/plugins/access';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@/assets/styles/map.scss';
 
 Vue.config.productionTip = false;
 Vue.use(VueApexCharts);
+Vue.use(AccessPlugin);
 
 const axiosConfig = {
   baseURL: '.',
