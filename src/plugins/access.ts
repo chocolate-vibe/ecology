@@ -35,9 +35,9 @@ const AccessPlugin = {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $isAdmin: boolean,
-    $isEcologist: boolean,
-    $user: User | undefined,
+    $isAdmin: () => boolean,
+    $isEcologist: () => boolean,
+    $user: () => User | undefined,
   }
 }
 

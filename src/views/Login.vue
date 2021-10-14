@@ -33,6 +33,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { emailRules, passwordRules } from '@/utils/validation';
 
 @Component
 export default class LoginPage extends Vue {
@@ -40,25 +41,23 @@ export default class LoginPage extends Vue {
   // email = null;
   password = null;
   isValid = false;
-  emailRules = [
-    (v: any) => !!v || 'Введите Email',
-    (v: any) => /.+@.+/.test(v) || 'E-mail некорректный',
-  ];
-  passwordRules = [
-    (v: any) => !!v || 'Введите пароль',
-    (v: any) => (v && v.length >= 5) || 'Пароль должен быть больше 6 символов',
-  ];
+  emailRules = emailRules;
+  passwordRules = passwordRules;
 
   /**
    * Авторизация
    */
+  mounted() {
+    console.log(this.$isAdmin());
+    console.log(this.$user());
+  }
   async login(): Promise<void> {
     try {
       const { data } = await this.$axios.get<{ token: string }>( // post
         '/data/auth.json',
         // { email: this.email, password: this.password }
       );
-      this.$axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      // this.$axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       localStorage.setItem('auth_token', `${data.token}`);
       this.$router.push('/');
     } catch (err) {

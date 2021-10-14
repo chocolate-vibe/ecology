@@ -1,6 +1,5 @@
 <template>
   <v-app
-    class="app"
     ma-0
     pa-0
   >
