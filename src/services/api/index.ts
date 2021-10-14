@@ -7,7 +7,8 @@ axios.defaults.baseURL = 'http://178.154.229.14/api';
 
 axios.interceptors.request.use((config) => {
   const updatedConfig = { ...config };
-  const authToken = localStorage.getItem('auth_token');
+  const authToken = localStorage.getItem('auth_token') || process.env.VUE_APP_MAPBOX_ACCESS_TOKEN || '';
+
   if (authToken && updatedConfig.headers) {
     updatedConfig.headers.Authorization = `Bearer ${authToken}`;
   }
