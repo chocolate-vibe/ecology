@@ -1,9 +1,7 @@
 <template>
-  <div id="app">
-    <component :is="layout" >
-      <router-view />
-    </component>
-  </div>
+  <component :is="layout" >
+    <router-view />
+  </component>
 </template>
 
 <script lang="ts">
@@ -19,7 +17,4 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-.app {
-  height: 100%;
-}
 </style>

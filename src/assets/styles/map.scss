@@ -1,22 +1,21 @@
 .map-marker {
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  background: red;
-  cursor: pointer;
+  &__station {
+    cursor: pointer;
+    font-size: 22px;
 
-  &:hover {
-    .map-marker__tooltip {
-      display: block;
+    &:hover {
+      font-size: 26px;
+      .map-marker__station-tooltip {
+        display: block;
+      }
     }
-  }
-
-  &__tooltip {
-    display: none;
-    position: absolute;
-    top: -18px;
-    left: 0;
-    width: fit-content;
-    white-space: nowrap;
+    &-tooltip {
+      display: none;
+      position: absolute;
+      top: -24px;
+      left: 0;
+      width: fit-content;
+      white-space: nowrap;
+    }
   }
 }

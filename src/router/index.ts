@@ -9,8 +9,8 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Map',
-    component: () => import(/* webpackChunkName: "MapGl" */ '@/views/MapGl.vue'),
+    name: 'MapPage',
+    component: () => import(/* webpackChunkName: "MapGl" */ '@/views/MapPage.vue'),
   },
   {
     path: '/chart-line',
