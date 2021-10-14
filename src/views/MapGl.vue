@@ -60,7 +60,7 @@ export default class MapGl extends Vue {
 
   async loadStations(): Promise<void> {
     try {
-      const { data } = await this.$axios.get<Stations>('/data/stations.json');
+      const { data } = await this.$api.stations.get();
       this.stations = data;
 
       this.stations.forEach((station) => {
