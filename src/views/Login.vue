@@ -47,10 +47,6 @@ export default class LoginPage extends Vue {
   /**
    * Авторизация
    */
-  mounted() {
-    console.log(this.$isAdmin());
-    console.log(this.$user());
-  }
   async login(): Promise<void> {
     try {
       const { data } = await this.$axios.get<{ token: string }>( // post
