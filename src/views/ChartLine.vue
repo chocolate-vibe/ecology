@@ -1,17 +1,17 @@
 <template>
   <div class="line-chart__wrap">
+    <apex-chart-line-date-example />
     <line-chart :chartData="chartData" :options="chartOptions" :height="150" />
-    <apex-chart-line/>
-    <apex-chart-line-date/>
+    <apex-chart-line />
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { ChartOptions, ChartData } from 'chart.js';
 import axios from 'axios';
 import LineChart from '@/components/charts/Line.vue';
 import ApexChartLine from '@/components/charts/ApexChartLine.vue';
 import ApexChartLineDate from '@/components/charts/ApexChartLineDate.vue';
+import ApexChartLineDateExample from '@/components/charts/examples/ApexChartLineDate.vue';
 import { WindData } from '@/types/wind-data';
 
 @Component({
@@ -19,6 +19,7 @@ import { WindData } from '@/types/wind-data';
     LineChart,
     ApexChartLine,
     ApexChartLineDate,
+    ApexChartLineDateExample,
   },
 })
 export default class LineChartWind extends Vue {
@@ -47,10 +48,7 @@ export default class LineChartWind extends Vue {
             },
           },
         ],
-        xAxes: [
-          {
-          },
-        ],
+        xAxes: [{}],
       },
       onHover: (e: any, item: any) => {
         if (item.length) e.target.style.cursor = 'pointer';
@@ -60,11 +58,11 @@ export default class LineChartWind extends Vue {
   }
 
   prepareData() {
-      // eslint-disable-next-line no-unused-expressions
-      this.windDataSet?.forEach((data: WindData) => {
-        this.xLabels.push(data.datetime);
-        this.yValues.push(data.windSpeed);
-      });
+    // eslint-disable-next-line no-unused-expressions
+    this.windDataSet?.forEach((data: WindData) => {
+      this.xLabels.push(data.datetime);
+      this.yValues.push(data.windSpeed);
+    });
   }
 
   async mounted() {
@@ -76,14 +74,16 @@ export default class LineChartWind extends Vue {
   buildChart() {
     this.chartData = {
       labels: this.xLabels,
-      datasets: [{
-        label: 'Wind speed',
-        data: this.yValues,
-        fill: true,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
-        pointRadius: 1,
-      }],
+      datasets: [
+        {
+          label: 'Wind speed',
+          data: this.yValues,
+          fill: true,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1,
+          pointRadius: 1,
+        },
+      ],
     };
   }
 

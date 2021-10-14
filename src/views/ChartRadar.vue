@@ -1,5 +1,12 @@
 <template>
   <div class="radar-chart__wrap">
+    <v-btn
+      @click="clickFunc"
+      color="success"
+      class="ml-2 mb-3 rounded-0"
+    >
+      Нажми на меня
+    </v-btn>
     <radar-chart :chartData="chartData" :options="chartOptions" :height="150" />
   </div>
 </template>
@@ -39,6 +46,10 @@ export default class RadarChartWind extends Vue {
     'СЗ',
     '',
   ];
+
+  clickFunc() {
+    console.log(this.$isEcologist());
+  }
 
   get stepCircle(): number {
     return 360 / this.directionsList.length;
@@ -88,7 +99,7 @@ export default class RadarChartWind extends Vue {
     });
     if (directionIndx === 0) coordinates[this.directionsList.length - 1] = 1;
     else coordinates[directionIndx - 1] = 1;
-    if (directionIndx === (this.directionsList.length - 1)) coordinates[0] = 1;
+    if (directionIndx === this.directionsList.length - 1) coordinates[0] = 1;
     else coordinates[directionIndx + 1] = 1;
 
     return coordinates;
@@ -96,6 +107,7 @@ export default class RadarChartWind extends Vue {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async mounted() {
+    this.$isAdmin();
     await this.fetchDataSets();
     // eslint-disable-next-line no-unused-expressions
     if (this.windDataSet) {
@@ -146,5 +158,4 @@ export default class RadarChartWind extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
