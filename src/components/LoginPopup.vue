@@ -61,10 +61,7 @@ export default class LoginPage extends Vue {
    */
   async login(): Promise<void> {
     try {
-      const { data } = await this.$axios.get<{ token: string }>( // post
-        '/data/auth.json',
-        // { email: this.email, password: this.password }
-      );
+      const { data } = await this.$api.auth.signIn();
       // this.$axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       localStorage.setItem('auth_token', `${data.token}`);
       this.$emit('hide');

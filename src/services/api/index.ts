@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Vue from 'vue';
 import stations from './stations';
+import auth from './auth';
 
 axios.defaults.baseURL = 'http://178.154.229.14/api';
 
@@ -22,6 +23,7 @@ axios.interceptors.response.use(undefined, (error) => {
 
 export const apiService = {
   stations: stations(axios),
+  auth: auth(axios),
 };
 
 export default (): void => {
