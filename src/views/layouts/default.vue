@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <div class="d-flex app">
+      <login-popup v-model="showLoginPopup" @hide="showLoginPopup = false"/>
       <v-navigation-drawer permanent>
         <v-list-item>
           <v-list-item-content>
@@ -21,6 +22,21 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-btn
+              @click="showLoginPopup = true"
+              color="success"
+              class="ml-2 mb-3 rounded-0"
+            >
+              Войти
+            </v-btn>
+          </v-list-item-content>
+        </v-list-item>
       </v-navigation-drawer>
       <v-main>
         <v-container>
@@ -33,9 +49,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import LoginPopup from '@/components/LoginPopup.vue';
 
-@Component
+@Component({
+  components: { LoginPopup },
+})
 export default class extends Vue {
+  showLoginPopup = false;
   items = [
     {
       icon: 'asd',
