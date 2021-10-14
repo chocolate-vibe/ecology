@@ -4,7 +4,7 @@ import { Station } from '../../types/stations';
 export const createStationMarker = (map: Map, station: Station): Marker => {
   const marker = new mapboxgl.Marker({
     element: document.createElement('div'),
-  }).setLngLat([station.lng, station.lat]);
+  }).setLngLat([station.lon, station.lat]);
 
   const markerEl = marker.getElement();
 

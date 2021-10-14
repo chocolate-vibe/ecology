@@ -13,6 +13,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { ChartOptions, ChartData } from 'chart.js';
+import axios from 'axios';
 import RadarChart from '@/components/charts/Radar.vue';
 import { WindData } from '@/types/wind-data';
 
@@ -142,7 +143,7 @@ export default class RadarChartWind extends Vue {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async fetchDataSets() {
-    const { data } = await this.$axios.get<WindData[]>('/data/wind.json');
+    const { data } = await axios.get<WindData[]>('/data/wind.json');
     this.windDataSet = data;
   }
 

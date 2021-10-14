@@ -13,12 +13,6 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "MapGl" */ '@/views/MapGl.vue'),
   },
   {
-    path: '/login',
-    name: 'login',
-    meta: { layout: 'Empty' },
-    component: () => import('@/views/Login.vue'),
-  },
-  {
     path: '/chart-line',
     name: 'ChartLine',
     meta: { roles: [Roles.ADMIN, Roles.ECOLOGIST] },

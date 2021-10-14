@@ -2,7 +2,7 @@ export interface Station {
   id: number,
   title: string,
   lat: number,
-  lng: number,
+  lon: number,
 }
 
 export type Stations = Station[];

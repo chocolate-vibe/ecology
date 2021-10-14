@@ -7,6 +7,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import axios from 'axios';
 import LineChart from '@/components/charts/Line.vue';
 import ApexChartLine from '@/components/charts/ApexChartLine.vue';
 import ApexChartLineDate from '@/components/charts/ApexChartLineDate.vue';
@@ -87,7 +88,7 @@ export default class LineChartWind extends Vue {
   }
 
   async fetchDataSets() {
-    const { data } = await this.$axios.get<WindData[]>('/data/wind.json');
+    const { data } = await axios.get<WindData[]>('/data/wind.json');
     this.windDataSet = data;
   }
 }

@@ -57,6 +57,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Component, Ref, Vue } from 'vue-property-decorator';
 import ApexChart from 'vue-apexcharts';
+import axios from 'axios';
 import { WindData } from '@/types/wind-data';
 
 @Component({
@@ -206,7 +207,7 @@ export default class ApexLineChart extends Vue {
   }
 
   async fetchDataSets() {
-    const { data } = await this.$axios.get<WindData[]>('/data/wind.json');
+    const { data } = await axios.get<WindData[]>('/data/wind.json');
     this.windDataSet = data;
   }
 }
