@@ -1,15 +1,26 @@
 <template>
   <v-app>
     <router-view />
+    <loader :loading="storeData.isLoading"/>
   </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Loader from '@/components/Loader.vue';
+import { store } from '@/store';
 
-@Component
+@Component({
+  components: {
+    Loader,
+  },
+})
 export default class LayoutDefault extends Vue {
-  showLoginPopup = false;
+  get storeData() {
+    return {
+      isLoading: store.root.state.isLoading,
+    };
+  }
 }
 </script>
 

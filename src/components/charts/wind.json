@@ -1,0 +1,1707 @@
+[
+  {
+    "datetime": "01/01/20 00:00",
+    "windDirection": "300",
+    "windSpeed": "9"
+  },
+  {
+    "datetime": "01/01/20 00:10",
+    "windDirection": "300",
+    "windSpeed": "4"
+  },
+  {
+    "datetime": "01/01/20 00:20",
+    "windDirection": "300",
+    "windSpeed": "9.3"
+  },
+  {
+    "datetime": "01/01/20 00:30",
+    "windDirection": "300",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "01/01/20 00:40",
+    "windDirection": "300",
+    "windSpeed": "9.2"
+  },
+  {
+    "datetime": "01/01/20 00:50",
+    "windDirection": "300",
+    "windSpeed": "4.3"
+  },
+  {
+    "datetime": "01/01/20 01:00",
+    "windDirection": "300",
+    "windSpeed": "9.1"
+  },
+  {
+    "datetime": "01/01/20 01:10",
+    "windDirection": "300",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "01/01/20 01:20",
+    "windDirection": "310",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "01/01/20 01:30",
+    "windDirection": "310",
+    "windSpeed": "3.7"
+  },
+  {
+    "datetime": "01/01/20 01:40",
+    "windDirection": "310",
+    "windSpeed": "3.4"
+  },
+  {
+    "datetime": "01/01/20 01:50",
+    "windDirection": "310",
+    "windSpeed": "5"
+  },
+  {
+    "datetime": "01/01/20 02:00",
+    "windDirection": "320",
+    "windSpeed": "4.8"
+  },
+  {
+    "datetime": "01/01/20 02:10",
+    "windDirection": "320",
+    "windSpeed": "5"
+  },
+  {
+    "datetime": "01/01/20 02:20",
+    "windDirection": "320",
+    "windSpeed": "4.6"
+  },
+  {
+    "datetime": "01/01/20 02:30",
+    "windDirection": "310",
+    "windSpeed": "3.4"
+  },
+  {
+    "datetime": "01/01/20 02:40",
+    "windDirection": "320",
+    "windSpeed": "4.5"
+  },
+  {
+    "datetime": "01/01/20 02:50",
+    "windDirection": "320",
+    "windSpeed": "5.2"
+  },
+  {
+    "datetime": "01/01/20 03:00",
+    "windDirection": "320",
+    "windSpeed": "9.1"
+  },
+  {
+    "datetime": "01/01/20 03:10",
+    "windDirection": "320",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "01/01/20 03:20",
+    "windDirection": "320",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "01/01/20 03:30",
+    "windDirection": "330",
+    "windSpeed": "8.2"
+  },
+  {
+    "datetime": "01/01/20 03:40",
+    "windDirection": "330",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "01/01/20 03:50",
+    "windDirection": "330",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "01/01/20 04:00",
+    "windDirection": "330",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "01/01/20 04:10",
+    "windDirection": "330",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "01/01/20 04:20",
+    "windDirection": "320",
+    "windSpeed": "7"
+  },
+  {
+    "datetime": "01/01/20 04:30",
+    "windDirection": "330",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "01/01/20 04:40",
+    "windDirection": "330",
+    "windSpeed": "8.2"
+  },
+  {
+    "datetime": "01/01/20 04:50",
+    "windDirection": "330",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "01/01/20 05:00",
+    "windDirection": "330",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "01/01/20 05:10",
+    "windDirection": "340",
+    "windSpeed": "6.6"
+  },
+  {
+    "datetime": "01/01/20 05:20",
+    "windDirection": "340",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "01/01/20 05:30",
+    "windDirection": "340",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "01/01/20 05:40",
+    "windDirection": "340",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "01/01/20 05:50",
+    "windDirection": "340",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "01/01/20 06:00",
+    "windDirection": "340",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "01/01/20 06:10",
+    "windDirection": "340",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "01/01/20 06:20",
+    "windDirection": "340",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "01/01/20 06:30",
+    "windDirection": "350",
+    "windSpeed": "8.2"
+  },
+  {
+    "datetime": "01/01/20 06:40",
+    "windDirection": "340",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "01/01/20 06:50",
+    "windDirection": "340",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "01/01/20 07:00",
+    "windDirection": "350",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "01/01/20 07:10",
+    "windDirection": "350",
+    "windSpeed": "9"
+  },
+  {
+    "datetime": "01/01/20 07:20",
+    "windDirection": "350",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "01/01/20 07:30",
+    "windDirection": "350",
+    "windSpeed": "6.9"
+  },
+  {
+    "datetime": "01/01/20 07:40",
+    "windDirection": "340",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "01/01/20 07:50",
+    "windDirection": "360",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "01/01/20 08:00",
+    "windDirection": "350",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "01/01/20 08:10",
+    "windDirection": "20",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "01/01/20 08:20",
+    "windDirection": "20",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "01/01/20 08:30",
+    "windDirection": "360",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "01/01/20 08:40",
+    "windDirection": "350",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "01/01/20 08:50",
+    "windDirection": "20",
+    "windSpeed": "6.8"
+  },
+  {
+    "datetime": "01/01/20 09:00",
+    "windDirection": "20",
+    "windSpeed": "6.3"
+  },
+  {
+    "datetime": "01/01/20 09:10",
+    "windDirection": "350",
+    "windSpeed": "6"
+  },
+  {
+    "datetime": "01/01/20 09:20",
+    "windDirection": "340",
+    "windSpeed": "6.2"
+  },
+  {
+    "datetime": "01/01/20 09:30",
+    "windDirection": "340",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "01/01/20 09:40",
+    "windDirection": "340",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "01/01/20 09:50",
+    "windDirection": "340",
+    "windSpeed": "10.7"
+  },
+  {
+    "datetime": "01/01/20 10:00",
+    "windDirection": "340",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "01/01/20 10:10",
+    "windDirection": "340",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "01/01/20 10:20",
+    "windDirection": "340",
+    "windSpeed": "13"
+  },
+  {
+    "datetime": "01/01/20 10:30",
+    "windDirection": "340",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "01/01/20 10:40",
+    "windDirection": "340",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "01/01/20 10:50",
+    "windDirection": "340",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "01/01/20 11:00",
+    "windDirection": "350",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "01/01/20 11:10",
+    "windDirection": "350",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "01/01/20 11:20",
+    "windDirection": "340",
+    "windSpeed": "6.4"
+  },
+  {
+    "datetime": "01/01/20 11:30",
+    "windDirection": "350",
+    "windSpeed": "6.6"
+  },
+  {
+    "datetime": "01/01/20 11:40",
+    "windDirection": "350",
+    "windSpeed": "6.2"
+  },
+  {
+    "datetime": "01/01/20 11:50",
+    "windDirection": "350",
+    "windSpeed": "6.2"
+  },
+  {
+    "datetime": "01/01/20 12:00",
+    "windDirection": "350",
+    "windSpeed": "5.5"
+  },
+  {
+    "datetime": "01/01/20 12:10",
+    "windDirection": "350",
+    "windSpeed": "5.6"
+  },
+  {
+    "datetime": "01/01/20 12:20",
+    "windDirection": "340",
+    "windSpeed": "5.3"
+  },
+  {
+    "datetime": "01/01/20 12:30",
+    "windDirection": "340",
+    "windSpeed": "4.2"
+  },
+  {
+    "datetime": "01/01/20 12:40",
+    "windDirection": "340",
+    "windSpeed": "4.4"
+  },
+  {
+    "datetime": "01/01/20 12:50",
+    "windDirection": "340",
+    "windSpeed": "4"
+  },
+  {
+    "datetime": "01/01/20 13:00",
+    "windDirection": "340",
+    "windSpeed": "4.8"
+  },
+  {
+    "datetime": "01/01/20 13:10",
+    "windDirection": "340",
+    "windSpeed": "5.2"
+  },
+  {
+    "datetime": "01/01/20 13:20",
+    "windDirection": "340",
+    "windSpeed": "6"
+  },
+  {
+    "datetime": "01/01/20 13:30",
+    "windDirection": "340",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "01/01/20 13:40",
+    "windDirection": "340",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "01/01/20 13:50",
+    "windDirection": "330",
+    "windSpeed": "5.5"
+  },
+  {
+    "datetime": "01/01/20 14:00",
+    "windDirection": "320",
+    "windSpeed": "6.7"
+  },
+  {
+    "datetime": "01/01/20 14:10",
+    "windDirection": "320",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "01/01/20 14:20",
+    "windDirection": "320",
+    "windSpeed": "7"
+  },
+  {
+    "datetime": "01/01/20 14:30",
+    "windDirection": "320",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "01/01/20 14:40",
+    "windDirection": "320",
+    "windSpeed": "5.6"
+  },
+  {
+    "datetime": "01/01/20 14:50",
+    "windDirection": "330",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "01/01/20 15:00",
+    "windDirection": "320",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "01/01/20 15:10",
+    "windDirection": "320",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "01/01/20 15:20",
+    "windDirection": "330",
+    "windSpeed": "4.6"
+  },
+  {
+    "datetime": "01/01/20 15:30",
+    "windDirection": "320",
+    "windSpeed": "6.2"
+  },
+  {
+    "datetime": "01/01/20 15:40",
+    "windDirection": "310",
+    "windSpeed": "6.9"
+  },
+  {
+    "datetime": "01/01/20 15:50",
+    "windDirection": "320",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "01/01/20 16:00",
+    "windDirection": "310",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "01/01/20 16:10",
+    "windDirection": "310",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "01/01/20 16:20",
+    "windDirection": "300",
+    "windSpeed": "5.3"
+  },
+  {
+    "datetime": "01/01/20 16:30",
+    "windDirection": "300",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "01/01/20 16:40",
+    "windDirection": "290",
+    "windSpeed": "7"
+  },
+  {
+    "datetime": "01/01/20 16:50",
+    "windDirection": "300",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "01/01/20 17:00",
+    "windDirection": "290",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "01/01/20 17:10",
+    "windDirection": "300",
+    "windSpeed": "10"
+  },
+  {
+    "datetime": "01/01/20 17:20",
+    "windDirection": "300",
+    "windSpeed": "9.4"
+  },
+  {
+    "datetime": "01/01/20 17:30",
+    "windDirection": "300",
+    "windSpeed": "9.3"
+  },
+  {
+    "datetime": "01/01/20 17:40",
+    "windDirection": "300",
+    "windSpeed": "9.4"
+  },
+  {
+    "datetime": "01/01/20 17:50",
+    "windDirection": "300",
+    "windSpeed": "9.3"
+  },
+  {
+    "datetime": "01/01/20 18:00",
+    "windDirection": "310",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "01/01/20 18:10",
+    "windDirection": "300",
+    "windSpeed": "10.5"
+  },
+  {
+    "datetime": "01/01/20 18:20",
+    "windDirection": "300",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "01/01/20 18:30",
+    "windDirection": "300",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "01/01/20 18:40",
+    "windDirection": "290",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "01/01/20 18:50",
+    "windDirection": "300",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "01/01/20 19:00",
+    "windDirection": "300",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "01/01/20 19:10",
+    "windDirection": "300",
+    "windSpeed": "9.7"
+  },
+  {
+    "datetime": "01/01/20 19:20",
+    "windDirection": "300",
+    "windSpeed": "6.7"
+  },
+  {
+    "datetime": "01/01/20 19:30",
+    "windDirection": "300",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "01/01/20 19:40",
+    "windDirection": "300",
+    "windSpeed": "9.3"
+  },
+  {
+    "datetime": "01/01/20 19:50",
+    "windDirection": "300",
+    "windSpeed": "9.4"
+  },
+  {
+    "datetime": "01/01/20 20:00",
+    "windDirection": "300",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "01/01/20 20:10",
+    "windDirection": "300",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "01/01/20 20:20",
+    "windDirection": "300",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "01/01/20 20:30",
+    "windDirection": "300",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "01/01/20 20:40",
+    "windDirection": "300",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "01/01/20 20:50",
+    "windDirection": "290",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "01/01/20 21:00",
+    "windDirection": "300",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "01/01/20 21:10",
+    "windDirection": "290",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "01/01/20 21:20",
+    "windDirection": "290",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "01/01/20 21:30",
+    "windDirection": "290",
+    "windSpeed": "7"
+  },
+  {
+    "datetime": "01/01/20 21:40",
+    "windDirection": "290",
+    "windSpeed": "5"
+  },
+  {
+    "datetime": "01/01/20 21:50",
+    "windDirection": "290",
+    "windSpeed": "5.2"
+  },
+  {
+    "datetime": "01/01/20 22:00",
+    "windDirection": "290",
+    "windSpeed": "6.9"
+  },
+  {
+    "datetime": "01/01/20 22:10",
+    "windDirection": "290",
+    "windSpeed": "6.6"
+  },
+  {
+    "datetime": "01/01/20 22:20",
+    "windDirection": "290",
+    "windSpeed": "5.8"
+  },
+  {
+    "datetime": "01/01/20 22:30",
+    "windDirection": "290",
+    "windSpeed": "5.4"
+  },
+  {
+    "datetime": "01/01/20 22:40",
+    "windDirection": "280",
+    "windSpeed": "5"
+  },
+  {
+    "datetime": "01/01/20 22:50",
+    "windDirection": "280",
+    "windSpeed": "5.1"
+  },
+  {
+    "datetime": "01/01/20 23:00",
+    "windDirection": "280",
+    "windSpeed": "5.3"
+  },
+  {
+    "datetime": "01/01/20 23:10",
+    "windDirection": "280",
+    "windSpeed": "5.8"
+  },
+  {
+    "datetime": "01/01/20 23:20",
+    "windDirection": "280",
+    "windSpeed": "6.9"
+  },
+  {
+    "datetime": "01/01/20 23:30",
+    "windDirection": "280",
+    "windSpeed": "6.8"
+  },
+  {
+    "datetime": "01/01/20 23:40",
+    "windDirection": "280",
+    "windSpeed": "5.9"
+  },
+  {
+    "datetime": "01/01/20 23:50",
+    "windDirection": "280",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "02/01/20 00:00",
+    "windDirection": "280",
+    "windSpeed": "6.5"
+  },
+  {
+    "datetime": "02/01/20 00:10",
+    "windDirection": "280",
+    "windSpeed": "6.3"
+  },
+  {
+    "datetime": "02/01/20 00:20",
+    "windDirection": "280",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "02/01/20 00:30",
+    "windDirection": "280",
+    "windSpeed": "5.5"
+  },
+  {
+    "datetime": "02/01/20 00:40",
+    "windDirection": "280",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "02/01/20 00:50",
+    "windDirection": "280",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 01:00",
+    "windDirection": "270",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 01:10",
+    "windDirection": "270",
+    "windSpeed": "5.2"
+  },
+  {
+    "datetime": "02/01/20 01:20",
+    "windDirection": "270",
+    "windSpeed": "5.6"
+  },
+  {
+    "datetime": "02/01/20 01:30",
+    "windDirection": "270",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 01:40",
+    "windDirection": "270",
+    "windSpeed": "6"
+  },
+  {
+    "datetime": "02/01/20 01:50",
+    "windDirection": "270",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "02/01/20 02:00",
+    "windDirection": "270",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "02/01/20 02:10",
+    "windDirection": "270",
+    "windSpeed": "8.2"
+  },
+  {
+    "datetime": "02/01/20 02:20",
+    "windDirection": "240",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "02/01/20 02:30",
+    "windDirection": "260",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "02/01/20 02:40",
+    "windDirection": "270",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "02/01/20 02:50",
+    "windDirection": "260",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "02/01/20 03:00",
+    "windDirection": "240",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 03:10",
+    "windDirection": "230",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "02/01/20 03:20",
+    "windDirection": "230",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "02/01/20 03:30",
+    "windDirection": "240",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "02/01/20 03:40",
+    "windDirection": "240",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "02/01/20 03:50",
+    "windDirection": "260",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "02/01/20 04:00",
+    "windDirection": "250",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "02/01/20 04:10",
+    "windDirection": "270",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "02/01/20 04:20",
+    "windDirection": "260",
+    "windSpeed": "9.4"
+  },
+  {
+    "datetime": "02/01/20 04:30",
+    "windDirection": "240",
+    "windSpeed": "9.1"
+  },
+  {
+    "datetime": "02/01/20 04:40",
+    "windDirection": "260",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "02/01/20 04:50",
+    "windDirection": "260",
+    "windSpeed": "9.1"
+  },
+  {
+    "datetime": "02/01/20 05:00",
+    "windDirection": "240",
+    "windSpeed": "9.4"
+  },
+  {
+    "datetime": "02/01/20 05:10",
+    "windDirection": "260",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "02/01/20 05:20",
+    "windDirection": "260",
+    "windSpeed": "9.3"
+  },
+  {
+    "datetime": "02/01/20 05:30",
+    "windDirection": "270",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "02/01/20 05:40",
+    "windDirection": "270",
+    "windSpeed": "9.7"
+  },
+  {
+    "datetime": "02/01/20 05:50",
+    "windDirection": "270",
+    "windSpeed": "10"
+  },
+  {
+    "datetime": "02/01/20 06:00",
+    "windDirection": "270",
+    "windSpeed": "10"
+  },
+  {
+    "datetime": "02/01/20 06:10",
+    "windDirection": "270",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "02/01/20 06:20",
+    "windDirection": "270",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "02/01/20 06:30",
+    "windDirection": "270",
+    "windSpeed": "10"
+  },
+  {
+    "datetime": "02/01/20 06:40",
+    "windDirection": "260",
+    "windSpeed": "9.5"
+  },
+  {
+    "datetime": "02/01/20 06:50",
+    "windDirection": "270",
+    "windSpeed": "9.9"
+  },
+  {
+    "datetime": "02/01/20 07:00",
+    "windDirection": "270",
+    "windSpeed": "10.2"
+  },
+  {
+    "datetime": "02/01/20 07:10",
+    "windDirection": "260",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "02/01/20 07:20",
+    "windDirection": "270",
+    "windSpeed": "10.7"
+  },
+  {
+    "datetime": "02/01/20 07:30",
+    "windDirection": "270",
+    "windSpeed": "10.4"
+  },
+  {
+    "datetime": "02/01/20 07:40",
+    "windDirection": "270",
+    "windSpeed": "10.6"
+  },
+  {
+    "datetime": "02/01/20 07:50",
+    "windDirection": "280",
+    "windSpeed": "10.8"
+  },
+  {
+    "datetime": "02/01/20 08:00",
+    "windDirection": "270",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "02/01/20 08:10",
+    "windDirection": "270",
+    "windSpeed": "10.9"
+  },
+  {
+    "datetime": "02/01/20 08:20",
+    "windDirection": "260",
+    "windSpeed": "11.1"
+  },
+  {
+    "datetime": "02/01/20 08:30",
+    "windDirection": "260",
+    "windSpeed": "11.1"
+  },
+  {
+    "datetime": "02/01/20 08:40",
+    "windDirection": "260",
+    "windSpeed": "10.6"
+  },
+  {
+    "datetime": "02/01/20 08:50",
+    "windDirection": "270",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "02/01/20 09:00",
+    "windDirection": "270",
+    "windSpeed": "10.9"
+  },
+  {
+    "datetime": "02/01/20 09:10",
+    "windDirection": "270",
+    "windSpeed": "10.9"
+  },
+  {
+    "datetime": "02/01/20 09:20",
+    "windDirection": "270",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "02/01/20 09:30",
+    "windDirection": "270",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "02/01/20 09:40",
+    "windDirection": "270",
+    "windSpeed": "11.4"
+  },
+  {
+    "datetime": "02/01/20 09:50",
+    "windDirection": "270",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "02/01/20 10:00",
+    "windDirection": "270",
+    "windSpeed": "11.9"
+  },
+  {
+    "datetime": "02/01/20 10:10",
+    "windDirection": "270",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "02/01/20 10:20",
+    "windDirection": "270",
+    "windSpeed": "11.3"
+  },
+  {
+    "datetime": "02/01/20 10:30",
+    "windDirection": "270",
+    "windSpeed": "10.4"
+  },
+  {
+    "datetime": "02/01/20 10:40",
+    "windDirection": "270",
+    "windSpeed": "10.6"
+  },
+  {
+    "datetime": "02/01/20 10:50",
+    "windDirection": "250",
+    "windSpeed": "11.1"
+  },
+  {
+    "datetime": "02/01/20 11:00",
+    "windDirection": "270",
+    "windSpeed": "11.2"
+  },
+  {
+    "datetime": "02/01/20 11:10",
+    "windDirection": "270",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "02/01/20 11:20",
+    "windDirection": "280",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "02/01/20 11:30",
+    "windDirection": "280",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "02/01/20 11:40",
+    "windDirection": "280",
+    "windSpeed": "9.3"
+  },
+  {
+    "datetime": "02/01/20 11:50",
+    "windDirection": "280",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "02/01/20 12:00",
+    "windDirection": "280",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "02/01/20 12:10",
+    "windDirection": "280",
+    "windSpeed": "9.7"
+  },
+  {
+    "datetime": "02/01/20 12:20",
+    "windDirection": "280",
+    "windSpeed": "11.1"
+  },
+  {
+    "datetime": "02/01/20 12:30",
+    "windDirection": "280",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "02/01/20 12:40",
+    "windDirection": "280",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "02/01/20 12:50",
+    "windDirection": "280",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "02/01/20 13:00",
+    "windDirection": "280",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "02/01/20 13:10",
+    "windDirection": "280",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "02/01/20 13:20",
+    "windDirection": "280",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 13:30",
+    "windDirection": "280",
+    "windSpeed": "10.2"
+  },
+  {
+    "datetime": "02/01/20 13:40",
+    "windDirection": "280",
+    "windSpeed": "8.2"
+  },
+  {
+    "datetime": "02/01/20 13:50",
+    "windDirection": "280",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 14:00",
+    "windDirection": "280",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "02/01/20 14:10",
+    "windDirection": "280",
+    "windSpeed": "9.2"
+  },
+  {
+    "datetime": "02/01/20 14:20",
+    "windDirection": "280",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "02/01/20 14:30",
+    "windDirection": "290",
+    "windSpeed": "9"
+  },
+  {
+    "datetime": "02/01/20 14:40",
+    "windDirection": "280",
+    "windSpeed": "9.5"
+  },
+  {
+    "datetime": "02/01/20 14:50",
+    "windDirection": "280",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "02/01/20 15:00",
+    "windDirection": "290",
+    "windSpeed": "9.1"
+  },
+  {
+    "datetime": "02/01/20 15:10",
+    "windDirection": "280",
+    "windSpeed": "10.2"
+  },
+  {
+    "datetime": "02/01/20 15:20",
+    "windDirection": "290",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "02/01/20 15:30",
+    "windDirection": "290",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "02/01/20 15:40",
+    "windDirection": "280",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "02/01/20 15:50",
+    "windDirection": "280",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "02/01/20 16:00",
+    "windDirection": "290",
+    "windSpeed": "9"
+  },
+  {
+    "datetime": "02/01/20 16:10",
+    "windDirection": "290",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "02/01/20 16:20",
+    "windDirection": "290",
+    "windSpeed": "9.3"
+  },
+  {
+    "datetime": "02/01/20 16:30",
+    "windDirection": "290",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "02/01/20 16:40",
+    "windDirection": "290",
+    "windSpeed": "11.1"
+  },
+  {
+    "datetime": "02/01/20 16:50",
+    "windDirection": "290",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "02/01/20 17:00",
+    "windDirection": "300",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "02/01/20 17:10",
+    "windDirection": "300",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "02/01/20 17:20",
+    "windDirection": "300",
+    "windSpeed": "9.6"
+  },
+  {
+    "datetime": "02/01/20 17:30",
+    "windDirection": "290",
+    "windSpeed": "8.2"
+  },
+  {
+    "datetime": "02/01/20 17:40",
+    "windDirection": "290",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "02/01/20 17:50",
+    "windDirection": "290",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "02/01/20 18:00",
+    "windDirection": "300",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "02/01/20 18:10",
+    "windDirection": "290",
+    "windSpeed": "8"
+  },
+  {
+    "datetime": "02/01/20 18:20",
+    "windDirection": "290",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "02/01/20 18:30",
+    "windDirection": "290",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "02/01/20 18:40",
+    "windDirection": "300",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "02/01/20 18:50",
+    "windDirection": "290",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "02/01/20 19:00",
+    "windDirection": "290",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "02/01/20 19:10",
+    "windDirection": "290",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "02/01/20 19:20",
+    "windDirection": "300",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "02/01/20 19:30",
+    "windDirection": "300",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "02/01/20 19:40",
+    "windDirection": "300",
+    "windSpeed": "8.5"
+  },
+  {
+    "datetime": "02/01/20 19:50",
+    "windDirection": "290",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 20:00",
+    "windDirection": "290",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "02/01/20 20:10",
+    "windDirection": "300",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "02/01/20 20:20",
+    "windDirection": "290",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "02/01/20 20:30",
+    "windDirection": "300",
+    "windSpeed": "8.9"
+  },
+  {
+    "datetime": "02/01/20 20:40",
+    "windDirection": "300",
+    "windSpeed": "9.1"
+  },
+  {
+    "datetime": "02/01/20 20:50",
+    "windDirection": "300",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "02/01/20 21:00",
+    "windDirection": "300",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "02/01/20 21:10",
+    "windDirection": "290",
+    "windSpeed": "7.7"
+  },
+  {
+    "datetime": "02/01/20 21:20",
+    "windDirection": "290",
+    "windSpeed": "8.2"
+  },
+  {
+    "datetime": "02/01/20 21:30",
+    "windDirection": "290",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "02/01/20 21:40",
+    "windDirection": "290",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "02/01/20 21:50",
+    "windDirection": "290",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "02/01/20 22:00",
+    "windDirection": "300",
+    "windSpeed": "8.8"
+  },
+  {
+    "datetime": "02/01/20 22:10",
+    "windDirection": "290",
+    "windSpeed": "7.1"
+  },
+  {
+    "datetime": "02/01/20 22:20",
+    "windDirection": "300",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "02/01/20 22:30",
+    "windDirection": "290",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "02/01/20 22:40",
+    "windDirection": "290",
+    "windSpeed": "8.6"
+  },
+  {
+    "datetime": "02/01/20 22:50",
+    "windDirection": "300",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "02/01/20 23:00",
+    "windDirection": "290",
+    "windSpeed": "7.1"
+  },
+  {
+    "datetime": "02/01/20 23:10",
+    "windDirection": "290",
+    "windSpeed": "6.7"
+  },
+  {
+    "datetime": "02/01/20 23:20",
+    "windDirection": "300",
+    "windSpeed": "6.5"
+  },
+  {
+    "datetime": "02/01/20 23:30",
+    "windDirection": "290",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "02/01/20 23:40",
+    "windDirection": "300",
+    "windSpeed": "7.1"
+  },
+  {
+    "datetime": "02/01/20 23:50",
+    "windDirection": "290",
+    "windSpeed": "6.8"
+  },
+  {
+    "datetime": "03/01/20 00:00",
+    "windDirection": "300",
+    "windSpeed": "6.3"
+  },
+  {
+    "datetime": "03/01/20 00:10",
+    "windDirection": "290",
+    "windSpeed": "6.5"
+  },
+  {
+    "datetime": "03/01/20 00:20",
+    "windDirection": "290",
+    "windSpeed": "5.1"
+  },
+  {
+    "datetime": "03/01/20 00:30",
+    "windDirection": "280",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "03/01/20 00:40",
+    "windDirection": "290",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "03/01/20 00:50",
+    "windDirection": "290",
+    "windSpeed": "6.9"
+  },
+  {
+    "datetime": "03/01/20 01:00",
+    "windDirection": "290",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "03/01/20 01:10",
+    "windDirection": "290",
+    "windSpeed": "6"
+  },
+  {
+    "datetime": "03/01/20 01:20",
+    "windDirection": "280",
+    "windSpeed": "6.1"
+  },
+  {
+    "datetime": "03/01/20 01:30",
+    "windDirection": "300",
+    "windSpeed": "6.4"
+  },
+  {
+    "datetime": "03/01/20 01:40",
+    "windDirection": "290",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "03/01/20 01:50",
+    "windDirection": "290",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "03/01/20 02:00",
+    "windDirection": "280",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "03/01/20 02:10",
+    "windDirection": "290",
+    "windSpeed": "5.8"
+  },
+  {
+    "datetime": "03/01/20 02:20",
+    "windDirection": "280",
+    "windSpeed": "6.4"
+  },
+  {
+    "datetime": "03/01/20 02:30",
+    "windDirection": "280",
+    "windSpeed": "6"
+  },
+  {
+    "datetime": "03/01/20 02:40",
+    "windDirection": "280",
+    "windSpeed": "5.4"
+  },
+  {
+    "datetime": "03/01/20 02:50",
+    "windDirection": "280",
+    "windSpeed": "5.6"
+  },
+  {
+    "datetime": "03/01/20 03:00",
+    "windDirection": "280",
+    "windSpeed": "7.1"
+  },
+  {
+    "datetime": "03/01/20 03:10",
+    "windDirection": "280",
+    "windSpeed": "5.3"
+  },
+  {
+    "datetime": "03/01/20 03:20",
+    "windDirection": "280",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "03/01/20 03:30",
+    "windDirection": "280",
+    "windSpeed": "5.7"
+  },
+  {
+    "datetime": "03/01/20 03:40",
+    "windDirection": "280",
+    "windSpeed": "5.3"
+  },
+  {
+    "datetime": "03/01/20 03:50",
+    "windDirection": "270",
+    "windSpeed": "6.7"
+  },
+  {
+    "datetime": "03/01/20 04:00",
+    "windDirection": "280",
+    "windSpeed": "7.3"
+  },
+  {
+    "datetime": "03/01/20 04:10",
+    "windDirection": "270",
+    "windSpeed": "4.9"
+  },
+  {
+    "datetime": "03/01/20 04:20",
+    "windDirection": "270",
+    "windSpeed": "5"
+  },
+  {
+    "datetime": "03/01/20 04:30",
+    "windDirection": "270",
+    "windSpeed": "6.5"
+  },
+  {
+    "datetime": "03/01/20 04:40",
+    "windDirection": "270",
+    "windSpeed": "6.8"
+  },
+  {
+    "datetime": "03/01/20 04:50",
+    "windDirection": "270",
+    "windSpeed": "7"
+  },
+  {
+    "datetime": "03/01/20 05:00",
+    "windDirection": "270",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "03/01/20 05:10",
+    "windDirection": "270",
+    "windSpeed": "8.7"
+  },
+  {
+    "datetime": "03/01/20 05:20",
+    "windDirection": "270",
+    "windSpeed": "7.6"
+  },
+  {
+    "datetime": "03/01/20 05:30",
+    "windDirection": "240",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "03/01/20 05:40",
+    "windDirection": "240",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "03/01/20 05:50",
+    "windDirection": "260",
+    "windSpeed": "8.3"
+  },
+  {
+    "datetime": "03/01/20 06:00",
+    "windDirection": "260",
+    "windSpeed": "6"
+  },
+  {
+    "datetime": "03/01/20 06:10",
+    "windDirection": "270",
+    "windSpeed": "7.4"
+  },
+  {
+    "datetime": "03/01/20 06:20",
+    "windDirection": "270",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "03/01/20 06:30",
+    "windDirection": "250",
+    "windSpeed": "5.2"
+  },
+  {
+    "datetime": "03/01/20 06:40",
+    "windDirection": "270",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "03/01/20 06:50",
+    "windDirection": "260",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "03/01/20 07:00",
+    "windDirection": "270",
+    "windSpeed": "8.1"
+  },
+  {
+    "datetime": "03/01/20 07:10",
+    "windDirection": "240",
+    "windSpeed": "7.8"
+  },
+  {
+    "datetime": "03/01/20 07:20",
+    "windDirection": "240",
+    "windSpeed": "7.2"
+  },
+  {
+    "datetime": "03/01/20 07:30",
+    "windDirection": "240",
+    "windSpeed": "7.5"
+  },
+  {
+    "datetime": "03/01/20 07:40",
+    "windDirection": "240",
+    "windSpeed": "5.9"
+  },
+  {
+    "datetime": "03/01/20 07:50",
+    "windDirection": "260",
+    "windSpeed": "6.8"
+  },
+  {
+    "datetime": "03/01/20 08:00",
+    "windDirection": "240",
+    "windSpeed": "5.4"
+  },
+  {
+    "datetime": "03/01/20 08:10",
+    "windDirection": "240",
+    "windSpeed": "8.4"
+  },
+  {
+    "datetime": "03/01/20 08:20",
+    "windDirection": "240",
+    "windSpeed": "9.5"
+  },
+  {
+    "datetime": "03/01/20 08:30",
+    "windDirection": "260",
+    "windSpeed": "7.9"
+  },
+  {
+    "datetime": "03/01/20 08:40",
+    "windDirection": "260",
+    "windSpeed": "8.1"
+  }
+]
