@@ -1,9 +1,9 @@
 import { AxiosStatic } from 'axios';
-import { Stations } from '@/types/stations';
+import { Stations } from '@/store/modules/stations/types';
 import { StationsApi } from './types';
 
 export default (axios: AxiosStatic): StationsApi => ({
   get() {
-    return axios.get<Stations>('http://178.154.229.14/api/stations');
+    return axios.get<Stations>('/stations');
   },
 });

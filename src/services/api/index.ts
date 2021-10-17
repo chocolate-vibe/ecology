@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Vue from 'vue';
 import stations from './stations';
+import pollutants from './pollutants';
+import measurements from './measurements';
 import auth from './auth';
 
 axios.defaults.baseURL = 'http://178.154.229.14/api';
@@ -22,11 +24,13 @@ axios.interceptors.response.use(undefined, (error) => {
   return Promise.reject(error);
 });
 
-export const apiService = {
+export const API = {
   stations: stations(axios),
+  pollutants: pollutants(axios),
+  measurements: measurements(axios),
   auth: auth(axios),
 };
 
 export default (): void => {
-  Vue.prototype.$api = apiService;
+  Vue.prototype.$api = API;
 };

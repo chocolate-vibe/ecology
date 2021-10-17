@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { Stations } from '@/types/stations';
+import { Stations } from '@/store/modules/stations/types';
 
 export interface StationsApi {
   get: () => Promise<AxiosResponse<Stations>>

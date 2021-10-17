@@ -9,17 +9,23 @@ import {
 } from 'vue-property-decorator';
 import { Polygon } from 'geojson';
 import { mapConfig } from '@/config';
-import { Stations } from '@/types/stations';
+// import { Stations } from '@/store/modules/stations/types';
 import { createStationMarker } from '@/mapElements/markers/station';
-import { hexLayer } from '@/mapElements/layers/hex';
+// import { hexLayer } from '@/mapElements/layers/hex';
 import grid2 from '../../../public/data/grid2.json';
+import { store } from '@/store';
 
 mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
 
 @Component
 export default class MapBoxGl extends Vue {
   map: Map | undefined;
-  stations: Stations | null = null;
+
+  get storeData() {
+    return {
+      stations: store.stations.state.stations,
+    };
+  }
 
   mounted(): void {
     const map = new mapboxgl.Map(mapConfig);
@@ -41,18 +47,16 @@ export default class MapBoxGl extends Vue {
   }
 
   onMapLoaded(e: MapboxEvent): void {
-    const map = e.target;
-    console.log(map.getStyle());
-    map.addLayer(hexLayer);
-    map.moveLayer('hex', 'building-number-label');
+    // const map = e.target;
+    // map.addLayer(hexLayer);
+    // map.moveLayer('hex', 'building-number-label');
   }
 
   async loadStations(map: Map): Promise<void> {
     try {
-      const { data } = await this.$api.stations.get();
-      this.stations = data;
+      await store.stations.actions.fetchStations();
 
-      this.stations.forEach((station) => {
+      this.storeData.stations.forEach((station) => {
         createStationMarker(map, station);
       });
     } catch (err) {
