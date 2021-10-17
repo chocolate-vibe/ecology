@@ -17,5 +17,10 @@
       width: fit-content;
       white-space: nowrap;
     }
+
+    &_active {
+      font-size: 30px;
+      color: red
+    }
   }
 }

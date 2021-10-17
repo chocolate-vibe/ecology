@@ -1,5 +1,6 @@
 import mapboxgl, { Map, Marker } from 'mapbox-gl';
-import { Station } from '../../types/stations';
+import { Station } from '@/store/modules/stations/types';
+import { store } from '@/store';
 
 export const createStationMarker = (map: Map | undefined, station: Station): Marker | null => {
   if (!map) return null;
@@ -23,6 +24,7 @@ export const createStationMarker = (map: Map | undefined, station: Station): Mar
   });
 
   marker.addTo(map);
+  store.stations.mutations.addStationsMapMarker(marker);
 
   return marker;
 };

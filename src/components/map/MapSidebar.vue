@@ -14,17 +14,55 @@
         </v-btn>
       </v-list-item-content>
     </v-list-item>
+    <pollutants-list @select="onPollutantSelect"/>
   </v-navigation-drawer>
 </template>
 
 <script lang="ts">
 import { Map } from 'mapbox-gl';
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { store } from '@/store';
+import PollutantsList from './MapSidebar/PollutantsList.vue';
+import { Pollutant } from '@/store/modules/pollutants/types';
 
-@Component
+@Component({
+  components: {
+    PollutantsList,
+  },
+})
 export default class MapSidebar extends Vue {
   @Prop({ type: Object, required: true })
   readonly map!: Map;
+
+  get storeData() {
+    return {
+      stations: store.stations.state.stations,
+      stationMarkers: store.stations.state.stationMapMarkers,
+      pollutants: store.pollutants.state.pollutants,
+    };
+  }
+
+  onPollutantSelect(selectedPollutant: Pollutant) {
+    this.$api.measurements.get({ pollutantId: selectedPollutant.id, date: new Date() });
+    this.storeData.stations.forEach((station) => {
+      const stationHasSelectedPollution = station.pollutants.some((pollutant) => (
+        pollutant.id === selectedPollutant.id
+      ));
+
+      const marker = this.storeData.stationMarkers.find((m) => {
+        const { lng, lat } = m.getLngLat();
+        return lng === station.lng && lat === station.lat;
+      });
+      const markerEl = marker?.getElement();
+
+      if (!markerEl) return;
+      if (stationHasSelectedPollution) {
+        markerEl.classList.add('map-marker__station_active');
+      } else {
+        markerEl.classList.remove('map-marker__station_active');
+      }
+    });
+  }
 }
 </script>
 

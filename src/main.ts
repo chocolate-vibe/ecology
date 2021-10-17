@@ -2,8 +2,9 @@ import Vue from 'vue';
 import VueApexCharts from 'vue-apexcharts';
 import App from './App.vue';
 import router from './router';
+import { storeInstance } from './store';
 import vuetify from './plugins/vuetify';
-import api, { apiService } from './services/api';
+import api, { API } from './services/api';
 import AccessPlugin from '@/plugins/access';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -17,12 +18,13 @@ Vue.use(api);
 declare module 'vue/types/vue' {
   // eslint-disable-next-line no-shadow
   interface Vue {
-    $api: typeof apiService;
+    $api: typeof API;
   }
 }
 
 new Vue({
   router,
+  store: storeInstance,
   vuetify,
   render: (h) => h(App),
 }).$mount('#app');

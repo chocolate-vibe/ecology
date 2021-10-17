@@ -2,7 +2,7 @@
   <div class="map-page">
     <div class="d-flex map-page__content">
       <map-sidebar
-        v-if="map"
+        v-if="map && storeData.stations.length"
         :map="map"
         @click:login="showLoginPopup = true"
       />
@@ -20,6 +20,7 @@ import { Map } from 'mapbox-gl';
 import MapBoxGl from '@/components/map/MapBoxGl.vue';
 import LoginPopup from '@/components/LoginPopup.vue';
 import MapSidebar from '@/components/map/MapSidebar.vue';
+import { store } from '@/store';
 
 @Component({
   components: {
@@ -31,6 +32,16 @@ import MapSidebar from '@/components/map/MapSidebar.vue';
 export default class MapPage extends Vue {
   showLoginPopup = false;
   map: Map | null = null;
+
+  get storeData() {
+    return {
+      stations: store.stations.state.stations,
+    };
+  }
+
+  mounted() {
+    store.pollutants.actions.fetchPollutants();
+  }
 
   setMap(map: Map): void {
     this.map = map;
