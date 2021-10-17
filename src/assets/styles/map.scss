@@ -1,10 +1,20 @@
+@import './vars';
+
 .map-marker {
+  cursor: pointer;
+
   &__station {
-    cursor: pointer;
-    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $gray-1;
+    border-radius: 40px;
+    background-color: $gray-0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.4;
 
     &:hover {
-      font-size: 26px;
       .map-marker__station-tooltip {
         display: block;
       }
@@ -18,9 +28,17 @@
       white-space: nowrap;
     }
 
+    &-concentration {
+      font-size: 14px;
+      &_empty {
+        font-size: 22px;
+      }
+    }
+
     &_active {
-      font-size: 30px;
-      color: red
+      // font-size: 30px;
+      // color: red
+      opacity: 1;
     }
   }
 }

@@ -6,4 +6,7 @@ export default (axios: AxiosStatic): StationsApi => ({
   get() {
     return axios.get<Stations>('/stations');
   },
+  getNearest({ lat, lng }) {
+    return axios.get('/stations/nearest', { params: { lat, lng } });
+  },
 });

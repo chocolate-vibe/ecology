@@ -14,6 +14,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import ApexChart from 'vue-apexcharts';
 import axios from 'axios';
 import { WindData } from '@/types/wind-data';
+import WindDataSet from './wind.json';
 
 @Component({
   components: {
@@ -30,7 +31,7 @@ export default class ApexLineChart extends Vue {
     return [
       {
         name: 'sales',
-        data: this.windDataSet?.map((el) => ({
+        data: WindDataSet.map((el) => ({
           x: el.datetime,
           y: el.windSpeed,
         })),

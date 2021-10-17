@@ -25,6 +25,8 @@ import { store } from '@/store';
 import PollutantsList from './MapSidebar/PollutantsList.vue';
 import { Pollutant } from '@/store/modules/pollutants/types';
 
+const { setIsLoading } = store.root.mutations;
+
 @Component({
   components: {
     PollutantsList,
@@ -42,26 +44,50 @@ export default class MapSidebar extends Vue {
     };
   }
 
-  onPollutantSelect(selectedPollutant: Pollutant) {
-    this.$api.measurements.get({ pollutantId: selectedPollutant.id, date: new Date() });
-    this.storeData.stations.forEach((station) => {
-      const stationHasSelectedPollution = station.pollutants.some((pollutant) => (
-        pollutant.id === selectedPollutant.id
-      ));
-
-      const marker = this.storeData.stationMarkers.find((m) => {
-        const { lng, lat } = m.getLngLat();
-        return lng === station.lng && lat === station.lat;
+  async onPollutantSelect(selectedPollutant: Pollutant) {
+    try {
+      setIsLoading(true);
+      const { data: measurements } = await this.$api.measurements.get({
+        pollutantId: selectedPollutant.id,
+        date: new Date(),
       });
-      const markerEl = marker?.getElement();
 
-      if (!markerEl) return;
-      if (stationHasSelectedPollution) {
-        markerEl.classList.add('map-marker__station_active');
-      } else {
-        markerEl.classList.remove('map-marker__station_active');
-      }
-    });
+      this.storeData.stations.forEach((station) => {
+        const stationHasSelectedPollution = station.pollutants.some((pollutant) => (
+          pollutant.id === selectedPollutant.id
+        ));
+
+        const marker = this.storeData.stationMarkers.find((m) => {
+          const { lng, lat } = m.getLngLat();
+          return lng === station.lng && lat === station.lat;
+        });
+        const markerEl = marker?.getElement();
+
+        if (!markerEl) return;
+
+        const concentrationEl = markerEl.querySelector('.map-marker__station-concentration') as HTMLDivElement;
+
+        if (stationHasSelectedPollution) {
+          markerEl.classList.add('map-marker__station_active');
+          concentrationEl.innerHTML = '<div class="mdi mdi-alert-circle map-marker__station-concentration_empty"></div>';
+        } else {
+          markerEl.classList.remove('map-marker__station_active');
+        }
+        const stationMeasurement = measurements.find((measurement) => (
+          measurement.station_id === station.id
+        ));
+
+        if (stationMeasurement && concentrationEl) {
+          concentrationEl.innerHTML = String(stationMeasurement.concentration);
+        } else if (!stationMeasurement && concentrationEl && !stationHasSelectedPollution) {
+          concentrationEl.innerHTML = '';
+        }
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   }
 }
 </script>

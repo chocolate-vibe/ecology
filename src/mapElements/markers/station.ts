@@ -6,7 +6,7 @@ export const createStationMarker = (map: Map | undefined, station: Station): Mar
   if (!map) return null;
 
   const element = document.createElement('div');
-  element.classList.add('mdi', 'mdi-album', 'map-marker', 'map-marker__station');
+  element.classList.add('map-marker', 'map-marker__station');
 
   const marker = new mapboxgl.Marker({
     element,
@@ -18,6 +18,10 @@ export const createStationMarker = (map: Map | undefined, station: Station): Mar
   markerTooltip.classList.add('map-marker__station-tooltip');
   markerTooltip.innerHTML = station.title;
   markerEl.appendChild(markerTooltip);
+
+  const markerConcentration = document.createElement('div');
+  markerConcentration.classList.add('map-marker__station-concentration');
+  markerEl.appendChild(markerConcentration);
 
   markerEl.addEventListener('click', () => {
     console.log('click: ', station);

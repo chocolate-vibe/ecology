@@ -3,7 +3,9 @@
 </template>
 
 <script lang="ts">
-import mapboxgl, { GeoJSONSource, Map, MapboxEvent } from 'mapbox-gl';
+import mapboxgl, {
+  GeoJSONSource, Map, MapboxEvent, MapMouseEvent,
+} from 'mapbox-gl';
 import {
   Component, Vue,
 } from 'vue-property-decorator';
@@ -14,8 +16,11 @@ import { createStationMarker } from '@/mapElements/markers/station';
 // import { hexLayer } from '@/mapElements/layers/hex';
 import grid2 from '../../../public/data/grid2.json';
 import { store } from '@/store';
+import { prepareStationsData } from '@/services/api/measurements/helpers';
 
 mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
+
+const { setIsLoading } = store.root.mutations;
 
 @Component
 export default class MapBoxGl extends Vue {
@@ -24,6 +29,7 @@ export default class MapBoxGl extends Vue {
   get storeData() {
     return {
       stations: store.stations.state.stations,
+      pollutants: store.pollutants.state.pollutants,
     };
   }
 
@@ -33,6 +39,7 @@ export default class MapBoxGl extends Vue {
     this.$emit('map-rendered', map);
 
     map.on('load', this.onMapLoaded);
+    map.on('preclick', this.onMapClicked);
 
     this.loadStations(map);
   }
@@ -46,10 +53,35 @@ export default class MapBoxGl extends Vue {
     source.setData(grid2 as GeoJSON.FeatureCollection<Polygon>);
   }
 
-  onMapLoaded(e: MapboxEvent): void {
+  onMapLoaded(e: MapboxEvent) {
     // const map = e.target;
     // map.addLayer(hexLayer);
     // map.moveLayer('hex', 'building-number-label');
+  }
+
+  async onMapClicked({ lngLat }: MapMouseEvent) {
+    try {
+      setIsLoading(true);
+      const { data: nearestStations } = await this.$api.stations.getNearest({ ...lngLat });
+      const { data: stationsData } = await this.$api.measurements.getStationsData({
+        date: new Date(),
+        stations: nearestStations.map((station) => station.id),
+      });
+      const preparedStationsData = prepareStationsData({
+        data: stationsData,
+        pollutants: this.storeData.pollutants,
+        stations: this.storeData.stations,
+      });
+
+      this.$emit('click:map', {
+        stationsData: preparedStationsData,
+        lngLat,
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   async loadStations(map: Map): Promise<void> {

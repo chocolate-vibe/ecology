@@ -10,4 +10,8 @@ export default (axios: AxiosStatic): MeasurementsApi => ({
     const formattedDate = formatDate(date);
     return axios.get<Measurements>(`/measurements/pollutant/${pollutantId}`, { params: { reading_date: formattedDate } });
   },
+  getStationsData({ date, stations }) {
+    const formattedDate = formatDate(date);
+    return axios.get('/measurements/stations', { params: { reading_date: formattedDate, stations } });
+  },
 });
