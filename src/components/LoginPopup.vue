@@ -13,7 +13,6 @@
         <v-form v-model="isValid">
           <v-text-field
             v-model="email"
-            :rules="emailRules"
             label="Email"
             required
           />
@@ -43,12 +42,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { emailRules, passwordRules } from '@/utils/validation';
+import { store } from '@/store';
 
 @Component
 export default class LoginPage extends Vue {
   @Prop() private readonly value!: boolean;
-  email = 'ecology@eds.ru';
-  password = null;
+  email = 'ecologist';
+  password = 'jvtBpFB97p';
   isValid = false;
   emailRules = emailRules;
   passwordRules = passwordRules;
@@ -61,12 +61,10 @@ export default class LoginPage extends Vue {
    */
   async login(): Promise<void> {
     try {
-      const { data } = await this.$api.auth.signIn();
-      // this.$axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      localStorage.setItem('auth_token', `${data.token}`);
+      await store.auth.actions.fetchAuth({ login: this.email, password: this.password });
       this.$emit('hide');
     } catch (err) {
-      throw err.response.data.error;
+      console.log(err);
     }
   }
 }

@@ -1,7 +1,7 @@
-interface AuthResponse {
+export interface AuthResponse {
   data: { token: string },
 }
 
 export interface AuthApi {
-  signIn: () => Promise<AuthResponse>
+  signIn: ({ login, password }: { login: string, password: string }) => Promise<AuthResponse>
 }
