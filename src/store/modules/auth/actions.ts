@@ -13,7 +13,7 @@ AuthActions
   async fetchAuth({ login, password }: { login: string, password: string }): Promise<AuthResponse> {
     const response = await API.auth.signIn({ login, password });
     localStorage.setItem('auth_token', response.data.token);
-    this.mutations.refrashUser();
+    this.mutations.refreshUser();
     return response;
   }
 }

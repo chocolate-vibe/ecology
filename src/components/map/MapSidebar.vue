@@ -62,7 +62,7 @@ export default class MapSidebar extends Vue {
    */
   logout(): void {
     localStorage.removeItem('auth_token');
-    store.auth.mutations.refrashUser();
+    store.auth.mutations.refreshUser();
   }
 
   async onPollutantSelect(selectedPollutant: Pollutant) {
@@ -112,7 +112,7 @@ export default class MapSidebar extends Vue {
   }
 
   mounted() {
-    store.auth.mutations.refrashUser();
+    store.auth.mutations.refreshUser();
   }
 }
 </script>
