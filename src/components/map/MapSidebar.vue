@@ -4,13 +4,23 @@
       <v-list-item-icon>
         <v-icon>mdi-account</v-icon>
       </v-list-item-icon>
-      <v-list-item-content>
+      <v-list-item-content v-if="!storeData.user">
         <v-btn
           @click="$emit('click:login')"
           color="success"
           class="ml-2 mb-3 rounded-0"
         >
           Войти
+        </v-btn>
+      </v-list-item-content>
+      <v-list-item-content v-else class="d-flex align-items-center">
+        <div>{{ storeData.user.login }}</div>
+        <v-btn
+          @click="logout()"
+          color="info"
+          class="ml-2 mb-3 rounded-0"
+        >
+          Выход
         </v-btn>
       </v-list-item-content>
     </v-list-item>
@@ -20,7 +30,9 @@
 
 <script lang="ts">
 import { Map } from 'mapbox-gl';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import {
+  Component, Prop, Vue, Watch,
+} from 'vue-property-decorator';
 import { store } from '@/store';
 import PollutantsList from './MapSidebar/PollutantsList.vue';
 import { Pollutant } from '@/store/modules/pollutants/types';
@@ -41,7 +53,16 @@ export default class MapSidebar extends Vue {
       stations: store.stations.state.stations,
       stationMarkers: store.stations.state.stationMapMarkers,
       pollutants: store.pollutants.state.pollutants,
+      user: store.auth.state.user,
     };
+  }
+
+  /**
+   * Выход из профиля
+   */
+  logout(): void {
+    localStorage.removeItem('auth_token');
+    store.auth.mutations.refrashUser();
   }
 
   async onPollutantSelect(selectedPollutant: Pollutant) {
@@ -88,6 +109,10 @@ export default class MapSidebar extends Vue {
     } finally {
       setIsLoading(false);
     }
+  }
+
+  mounted() {
+    store.auth.mutations.refrashUser();
   }
 }
 </script>
