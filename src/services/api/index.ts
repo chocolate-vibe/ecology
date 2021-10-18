@@ -5,7 +5,7 @@ import pollutants from './pollutants';
 import measurements from './measurements';
 import auth from './auth';
 
-axios.defaults.baseURL = 'http://178.154.229.14/api';
+axios.defaults.baseURL = `${process.env.VUE_APP_API_URL}/api`;
 
 axios.interceptors.request.use((config) => {
   const updatedConfig = { ...config };
