@@ -3,8 +3,9 @@ FROM node:12.18.0
 WORKDIR /chocolate
 
 COPY package.json .
+COPY package-lock.json .
 
-RUN npm install
+RUN npm ci
 
 COPY ./ .
 
