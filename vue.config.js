@@ -6,6 +6,10 @@ module.exports = {
     'vuetify',
   ],
   configureWebpack: {
+    devServer: {
+      disableHostCheck: true,
+      compress: true,
+    },
     plugins: [
       new webpack.ProvidePlugin({
         axios: 'axios',
