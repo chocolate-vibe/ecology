@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+
+import argparse
+from ruamel import yaml
+import io
+import os
+import platform
+import subprocess
+import boto3
+from botocore.exceptions import ClientError
+import zipfile
+
+
+def get_name_from_config():
+    with open('eds-frontend/values.yaml') as config:
+        data = yaml.safe_load(config)
+        name = data['Name']
+    return name
+
+
+def pull_image():
+    with open('dev.Dockerfile') as dockerfile:
+        for line in dockerfile:
+            if 'FROM ' in line:
+                dev_image = line.replace('FROM', '')
+                break
+    subprocess.run(f'docker pull {dev_image}', shell=True)
+
+
+def set_os_specific_variables():
+    if platform.system() == 'Windows':
+        set_variable = 'set '
+    elif platform.system() == 'Linux':
+        set_variable = 'export '
+    elif platform.system() == 'Darwin':
+        set_variable = 'export '
+    else:
+        print('Unsupported platform!')
+        exit(1)
+    return set_variable
+
+
+def init():
+    domains = [f'{args.name}.eds.umax.dev']
+    config = {
+        'Name': args.name,
+        'REPLICA_COUNT': '1',
+        'Domain': f'{args.name}.eds.umax.dev',
+        'RegistryConfig': "ewoJImF1dGhzIjogewoJCSJjci55YW5kZXgiOiB7CgkJCSJhdXRoIjogImFuTnZibDlyWlhrNmV3b2dJQ0FpYVdRaU9pQWlZV3BsTmpnMFpXOXVOSEZ0Tlc5c1ltYzFhbUVpTEFvZ0lDQWljMlZ5ZG1salpWOWhZMk52ZFc1MFgybGtJam9nSW1GcVpXazRaR2RuYldKdll6QnVhMm93YlRscUlpd0tJQ0FnSW1OeVpXRjBaV1JmWVhRaU9pQWlNakF4T1MweE1DMHdPRlF4TlRvek56b3dObG9pTEFvZ0lDQWlhMlY1WDJGc1oyOXlhWFJvYlNJNklDSlNVMEZmTWpBME9DSXNDaUFnSUNKd2RXSnNhV05mYTJWNUlqb2dJaTB0TFMwdFFrVkhTVTRnVUZWQ1RFbERJRXRGV1MwdExTMHRYRzVOU1VsQ1NXcEJUa0puYTNGb2EybEhPWGN3UWtGUlJVWkJRVTlEUVZFNFFVMUpTVUpEWjB0RFFWRkZRVEF5ZG1KVVFVVkthVXRxYkdJeVNuVjBNMnBoWEc1SGNFdGhWek5RT0hGQ2NWQnJSRUptVkZsSFdISlRSVmRsWWs5clQyeHdjMHh6Y0d0Vk9VNWFhWEI0TTJjM1ZtSnJWVFpHTDBabWFtWlVjVkJsTldGeFhHNUlTVFpRTmpoMWJtMVdkV1YwZW5wa1QwczBSbk52U2pjdmFVMVVTV280ZERSb1QySlVURnByUjB4QmJrdGxaRVJ5UlZBM1JYcE9kRzVSWmpsTWQyNDBYRzVvWkZsVlRVOTFXakp5ZGtkb2JrZDNZazQzU0dOMGFuUm9NVzl2UmpOM2VXZFdRVEkzVEhGVldWSXlORWRMWWxCU1kyTlZZMWd2Vm1GbFUwVk1RM2x0WEc0d2IyeFlkMnhOWTA1V2VFZDFMMVF4Um5Cdk5FcEhOSE5FV0hvMGFGTXlRUzh5Ylc5VmJsaEhibVZPTW5FMWFHSlpZM2RIWjJ4WWVXRmtPREYzU1RaelhHNHZVR3hVTjNCRlZrMDRRM2hVTVhkak0wdGFjRE01TURkSWJWcG5SMDlvVld4a01VRlhSRVZxZFcweVIzZENZMEZ2WTJkUmIyUTNRblZZSzJjNVpHaE9YRzQ1ZDBsRVFWRkJRbHh1TFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHRYRzRpTEFvZ0lDQWljSEpwZG1GMFpWOXJaWGtpT2lBaUxTMHRMUzFDUlVkSlRpQlFVa2xXUVZSRklFdEZXUzB0TFMwdFhHNU5TVWxGZG1kSlFrRkVRVTVDWjJ0eGFHdHBSemwzTUVKQlVVVkdRVUZUUTBKTFozZG5aMU5yUVdkRlFVRnZTVUpCVVVSVVlUbDBUVUZSYlVseFQxWjJYRzVaYlRZelpVNXZZV3R3Y0dKakwzbHZSMjhyVVUxR09VNW5XbVYwU1ZKYU5YTTJVVFpYYlhkMWVXMVNWREF4YlV0dVNHVkVkRloxVWxSdldEaFdLMDQ1WEc1UGJ6azNiSEZ2WTJwdkwzSjVObVZhVnpVMk0xQk9NRFJ5WjFkNVoyNTJLMGw0VFdsUWVUTnBSVFYwVFhSdFVWbHpRMk53TlRCUGMxRXZjMVJOTWpKa1hHNUNMekIyUTJacFJqRm9VWGMyTlc1aGRUaGhSMk5pUW5NemMyUjVNazh5U0ZkcFoxaG1SRXRDVlVSaWMzVndVbWhJWW1kWmNITTVSbmg0VW5obU9WWndYRzQxU1ZGelRFdGlVMmxXWmtOVmVIY3hXRVZoTnpsUVZWZHRhbWRyWW1sM1RtWlFhVVpNV1VRdllXRm9VMlJqWVdRME0yRnliVVowYUhwQllVTldaa3B3WEc0emVsaEJhbkY2T0N0V1VIVnJVbFY2ZDB4R1VGaENlbU53Ylc1bU0xUnpaVnB0UVZrMlJsTldNMVZDV1UxVFR6WmlXV0pCUm5kRGFIbENRMmd6YzBjMVhHNW1Oa1F4TWtVek0wRm5UVUpCUVVWRFoyZEZRa0ZPUWpVeWNGUnVjMDg0UWtoTWVtODBlVkZ2UmpKc09HaHdhMGhzYlhoMFVrbE9Oa3d6TDA0cmFreFBYRzVJWTNWRlUwd3dRbnBSZFZkd04yWkNRVTV4WkhvemQyZHhWbkIyWnpnclFrZDFSM2hxVTNKb1RtNHhVMVp5YVRnMlZtUm1PRkJJWmtsdlZuaHNSWGxwWEc1UWIwbHlUa0ZNYUV0bE1UQlNMemgwUjNsaU9VUkxSbFpYYmxoVU1IaEVjamxZY1ZSR2FWZzRVSGRSTmxKVk5qUkJPRFpqZFhaYU0zaFFRMVl2VkZwUlhHNTRZa3hKTVM5dk0waGlOVzVzYlRkTmJuWjBSMHBOVEU5dEwzUldja2xUTUdKM09YSXhWazg0Y2xONU1rdzBiWFZ4ZFZseVNtUlBhVTFKTmtGak5HRklYRzUxWW5sd2IxcGxNbk4wTlcxb1NFVlhRblJXYW5ScFpqRlpiV3RWTlhGTmNIRlJUMVpGTVc1YU1rZGtaazAyTTNKQkx6SkhhVmxHT0d4bWRFTmFVRXhHWEc1VUwxWkVObVJSVkZoUk1qQjNNR2QzUVcxMU5uTnlWeTlhZUdwRlVtRXljSE5PTlVwbWJVNXFaRWxGUTJkWlJVRXZjMDl4YVZWMU1qWkdXbHBTWlhaWVhHNUdSbXRKV2tKRGJVNWlVSFFyYUdsd0wyaDRaRVpCV2paYVpIVk9aSE5sYzFOc1ZVcGlVVlpUTDA5MVlqWnRhbnByZEhkemRVZERNblp0UTFoT1JuRTJYRzR5WWxGb1JFRndWR1YwTW05aGNDOTNRV2REUldweFZsZFRkMDlpTTJSa1dXUlhWRXcxTUNzeVFrbEJRMkpuUmpGaWVGTlhLekpIYjBOS2FtVjBVM1pvWEc1WEsxaEhVV3BMU0ZsRmRrUTFLMWRJYWxKTllVZ3lhM2hXVERCRFoxbEZRVEZJU21aYWFqbENibEo2ZG05cFIwVnpTSHBSUkZSTE1WaHpXbmt4YVhWVVhHNXdPRUpHVkRsTU5XcG9Ra05yU1hjdlZFbENWekl2THk5VlNWVlBTa05DUjJKNFluVTFlRmhoWVhoSVUzZHFZbWhpYVhKUWJtZ3dRMHRJV0RVeE1UUXJYRzR5VUdsaE5WRnFjQ3RHTDNwVlQxZGFTbU5QYURZM0wyTjNObU5GYXpoYWIwTnBlVmhpYTBVcmRGUkxPRXhqUzFSNk5WTkdjbTVhY2tWVlFXRjFja3ByWEc1YVVuTkxjMVp2VVRaelRVTm5XVVZCYjFKQ2FFTTBXSHB6UkZkUVNWSmFNa1p4V1c1SFQxRjRkMGhtZEhSNFZFdDJRakpCWkhZeVZtVnFibmN5UzNod1hHNDNNa05PYjJkQlozUkZabU5tWW1zeVlrb3lTVXBHVkRSck5tMU1WRzh3YUROcGNqQlVZVVpzYmpaTWRFc3JVRXh1SzJoc05XRjZMM1pzVFdOM2IyRXpYRzV3VW1oQ2JGRTJaU3N6T1ZkcFpXVm5URGhpY205VFptWlVVR2RuY2twa0sxWldVVk5KU2pORVYyOTZjalJRYzBzeFNsUkZRMmxISzBReE1FTm5XVUo2WEc0M1ZqRnNaa0Z6WmpSMFVsa3djRmRJWjFCUkt6TXpZbVJIYzJzM1YxWm5abG9yYm5GdWVVOVRhRUZxZFhVM2EyMHdOMjFUU0RKWFFUSk1jRmwxUlhZeVhHNHZjbkZ4TW5RdmRrbFVRM2w2YVZCQ1lrSmpWRWh3TURReWRtWlZjMEppTTJGMVIweE1XWGRQTDNKNlZsaG9VblEyVVRCSmFXY3JOM0V2TTNoaVdXdEZYRzVXUlZSc05IcERSM3BCUzI1eVl5OWxja0p6ZFd0dGRtMVpLMkY1Ukdad0szVlllbWxRYkZkUk5WRkxRbWRIZVZwck9HcERaRWQ0WjNCaFoxbzBPRWx1WEc1RlMwSTVlRXhPVDNKbFdEQTRVSEZ6V1dsUGRVVlZiSFJUYzBOUlYzRnhSemhPV1RCNWFGTXhUWFFyZVZjNFdFOWpibFF2Y2twdk5YcDBlbUZNTVZKaVhHNXJhWGx0YmxVelVFcHljVEpWVTB4TmRHSlFSMnBWZWt4QmJtUlpkRGMwS3paVlFrMWlMM2h0WTBsVk9UVjBkU3RxY213NFZuaGljelowZG14Vk1FOW9YRzQ0YVhKMVpXNVdPVVZWV1hWNlRsSlBjVVp3U1ZaU1ZFTmNiaTB0TFMwdFJVNUVJRkJTU1ZaQlZFVWdTMFZaTFMwdExTMWNiaUlLZlE9PSIKCQl9LAoJIkh0dHBIZWFkZXJzIjogewoJCSJVc2VyLUFnZW50IjogIkRvY2tlci1DbGllbnQvMTkuMDMuMSAobGludXgpIgoJfQp9Cn0K",
+        'WhiteList': {'Enabled': args.whitelist,
+                      "IPs":
+                      "['217.67.187.170','84.201.170.79','10.250.0.0/16']"},
+        'IngressRoute': "True"
+    }
+
+    with io.open('eds-frontend/values.yaml', 'w', encoding='utf8') as values_file:
+        yaml.dump(config, values_file,
+                  default_flow_style=False, allow_unicode=True)
+
+    pull_image()
+
+
+def run():
+    pull_image()
+    name = get_name_from_config()
+
+    if args.dev == True:
+        subprocess.run(
+            f'{set_variable}Name={name}&& skaffold dev --force=false --cleanup=false', shell=True)
+    else:
+        subprocess.run(
+            f'{set_variable}Name={name}&& skaffold run -p production', shell=True)
+        print(
+            f'Фронтенд развернут и доступен по адресу https://{name}.eds.umax.dev')
+
+
+def destroy():
+    name = get_name_from_config()
+    subprocess.run(f'helm delete {name}-frontend -n eds', shell=True)
+
+
+def exec_command():
+    name = get_name_from_config()
+    subprocess.run(
+        f'kubectl exec -ti svc/{name}-frontend bash -n eds', shell=True)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="Утилита для управления окружением")
+    subparsers = parser.add_subparsers(dest='cmd')
+
+    parser_init = subparsers.add_parser('init', help='Инициализация проекта')
+    parser_init.add_argument('--name', '-n', action='store', type=str,
+                             help='Имя проекта, из него генерируется URL и некоторые другие параметры')
+    parser_init.add_argument('--whitelist', '-w', action='store', type=str, default='True',
+                             help='Включение(False)/Выключение(True) доступа через интернет. По умолчанию True')
+
+    parser_run = subparsers.add_parser('run', help='Запустить окружение')
+    parser_run.add_argument(
+        '--dev', help='Включить синхронизацию кода', action='store_true')
+
+    parser_destroy = subparsers.add_parser(
+        'destroy', help='Уничтожить окружение')
+
+    parser_pull = subparsers.add_parser('pull', help='Обновить базовые имеджи')
+
+    parser_exec = subparsers.add_parser('exec', help='Провалиться в контейнер')
+
+    args = parser.parse_args()
+
+    set_variable = set_os_specific_variables()
+
+    if args.cmd == 'init':
+        init()
+    if args.cmd == 'run':
+        run()
+    if args.cmd == 'pull':
+        pull_image()
+    if args.cmd == 'destroy':
+        destroy()
+    if args.cmd == 'exec':
+        exec_command()

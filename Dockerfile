@@ -1,16 +1,20 @@
-FROM node:12.18.0
+FROM cr.yandex/crpk51ud2cjku2i8e2b6/node:12-alpine
 
-WORKDIR /chocolate
 
-COPY package.json .
-COPY package-lock.json .
+ENV PORT 3000
+ENV HOST '0.0.0.0'
+ENV API_URL 'https://eds.umax.dev/api/'
+ENV API_URL_BROWSER 'https://eds.umax.dev/api/'
+ARG PROD_ENV
 
-RUN npm ci
+ENV PROD_ENV ${PROD_ENV}
 
-COPY ./ .
+USER node
+WORKDIR /home/node
 
-RUN npm run build
+COPY . /home/node
 
-EXPOSE 80
+RUN npm i \
+  && npm run build
 
-CMD npm run serve
+CMD ["npm", "run", "serve"]

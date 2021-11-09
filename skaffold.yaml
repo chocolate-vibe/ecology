@@ -1,0 +1,67 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+  - image: cr.yandex/crpk51ud2cjku2i8e2b6/eds-frontend
+    sync:
+      manual:
+      - src: api/**/*
+        dest: /home/node/
+      - src: assets/**/*
+        dest: /home/node/
+      - src: components/**/*
+        dest: /home/node/
+      - src: layouts/**/*
+        dest: /home/node/
+      - src: middleware/**/*
+        dest: /home/node/
+      - src: models/**/*
+        dest: /home/node/
+      - src: pages/**/*
+        dest: /home/node/
+      - src: plugins/**/*
+        dest: /home/node/
+      - src: schemes/**/*
+        dest: /home/node/
+      - src: static/**/*
+        dest: /home/node/
+      - src: store/**/*
+        dest: /home/node/
+      - src: types/**/*
+        dest: /home/node/
+      - src: utils/**/*
+        dest: /home/node/
+      - src: '*.js'
+        dest: /home/node/
+      - src: .idea/**/*
+        dest: /home/node/
+      - src: .vscode/**/*
+        dest: /home/node/
+
+    docker:
+      dockerfile: dev.Dockerfile
+      noCache: true	
+  tagPolicy:
+    sha256: {}
+
+deploy:
+  helm:
+    flags:
+      upgrade: ["-i"]
+    releases:
+    - name: '{{.Name}}-frontend'
+      chartPath: eds-frontend
+      values:
+        APP_IMAGE: cr.yandex/crpk51ud2cjku2i8e2b6/eds-frontend
+      namespace: eds
+profiles:
+- name: production
+  build:
+    tagPolicy:
+      sha256: {} 
+    artifacts:
+    - image: cr.yandex/crpk51ud2cjku2i8e2b6/eds-frontend
+      docker:
+        dockerfile: Dockerfile
+        noCache: true	
+

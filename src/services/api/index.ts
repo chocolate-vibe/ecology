@@ -1,9 +1,14 @@
 import axios from 'axios';
 import Vue from 'vue';
-import stations from './stations';
-import pollutants from './pollutants';
-import measurements from './measurements';
+
 import auth from './auth';
+import chat from './chat';
+import educationGroup from './education-group';
+import feedback from './feedback';
+import lesson from './lesson';
+import metric from './metric';
+import teacher from './teacher';
+import users from './users';
 
 axios.defaults.baseURL = `${process.env.VUE_APP_API_URL}/api`;
 
@@ -25,10 +30,14 @@ axios.interceptors.response.use(undefined, (error) => {
 });
 
 export const API = {
-  stations: stations(axios),
-  pollutants: pollutants(axios),
-  measurements: measurements(axios),
   auth: auth(axios),
+  chat: chat(axios),
+  educationGroup: educationGroup(axios),
+  feedback: feedback(axios),
+  lesson: lesson(axios),
+  metric: metric(axios),
+  teacher: teacher(axios),
+  users: users(axios),
 };
 
 export default (): void => {

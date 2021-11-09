@@ -5,13 +5,18 @@ import router from './router';
 import { storeInstance } from './store';
 import vuetify from './plugins/vuetify';
 import api, { API } from './services/api';
+import colorsPlugin from '@/plugins/colors';
+import globalPlugin from '@/plugins/global';
+import formattingPlugin from '@/plugins/formatting';
 
-import 'mapbox-gl/dist/mapbox-gl.css';
 import '@/assets/styles/map.scss';
 
 Vue.config.productionTip = false;
 Vue.use(VueApexCharts);
 Vue.use(api);
+Vue.use(colorsPlugin);
+Vue.use(globalPlugin);
+Vue.use(formattingPlugin);
 
 declare module 'vue/types/vue' {
   // eslint-disable-next-line no-shadow

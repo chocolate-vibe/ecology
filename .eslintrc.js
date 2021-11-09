@@ -19,5 +19,14 @@ module.exports = {
     'class-methods-use-this': 'off',
     'lines-between-class-members': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+    "linebreak-style": 0,
+    'max-len': 'off',
+    'object-curly-newline': 'off',
+    'no-param-reassign': 'off',
+    'consistent-return': 'off',
+    'no-plusplus': 'off',
+    radix: 'off',
+    'import/no-unresolved': 'off',
   },
 };

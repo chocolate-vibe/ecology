@@ -61,7 +61,7 @@ export default class LoginPage extends Vue {
    */
   async login(): Promise<void> {
     try {
-      await store.auth.actions.fetchAuth({ login: this.email, password: this.password });
+      await store.auth.actions.fetchAuth({ email: this.email, password: this.password });
       this.$emit('hide');
     } catch (err) {
       console.log(err);

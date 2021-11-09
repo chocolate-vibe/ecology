@@ -1,7 +1,11 @@
+import { AxiosResponse } from 'axios';
+
 export interface AuthResponse {
-  data: { token: string },
+   token: string,
 }
 
+export interface SignIn { email: string, password: string }
+
 export interface AuthApi {
-  signIn: ({ login, password }: { login: string, password: string }) => Promise<AuthResponse>
+  signIn: ({ email, password }: SignIn) => Promise<AxiosResponse<AuthResponse>>
 }

@@ -1,5 +1,5 @@
-import { User } from '@/types/models/User';
+import { IUser } from '@/types/user';
 
 export class AuthState {
-  user: User | undefined = undefined;
+  user: IUser | undefined = undefined;
 }

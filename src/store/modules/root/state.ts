@@ -1,3 +1,3 @@
 export class RootState {
-  isLoading = false
+  isLoading = false;
 }

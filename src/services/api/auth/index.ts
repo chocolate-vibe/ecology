@@ -1,8 +1,8 @@
 import { AxiosStatic } from 'axios';
-import { AuthApi } from './types';
+import { AuthApi, SignIn } from './types';
 
 export default (axios: AxiosStatic): AuthApi => ({
-  signIn({ login, password }) {
-    return axios.get('/login', { params: { login, password } });
+  signIn(params: SignIn) {
+    return axios.post('/authorization/login', params);
   },
 });

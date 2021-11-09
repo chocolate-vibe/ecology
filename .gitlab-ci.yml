@@ -1,0 +1,67 @@
+variables:
+  REGISTRY: cr.yandex/crpk51ud2cjku2i8e2b6
+  GROUP_NAME: eds
+  APP_FILE: Dockerfile
+  APP_IMAGE: $REGISTRY/$GROUP_NAME-$CI_PROJECT_NAME:$CI_COMMIT_SHORT_SHA
+  DOCKER_HOST: tcp://localhost:2375
+  DOCKER_TLS_CERTDIR: ''
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: cr.yandex/crpk51ud2cjku2i8e2b6/maximum-dind:master
+  services:
+    - cr.yandex/crpk51ud2cjku2i8e2b6/docker:dind
+  script:
+    - mkdir -p ~/.docker
+    - echo $RegistryConfig | base64 -d > ~/.docker/config.json
+    - docker build --no-cache -t $APP_IMAGE -f $APP_FILE --build-arg PROD_ENV=true .
+    - docker push $APP_IMAGE
+  tags:
+    - k8s-test01
+  only:
+    - master
+
+.deploy: &deploy
+  - echo $YANDEX_TOKEN | base64 --decode > /root/.config/yandex-cloud/config.yaml
+  - echo $K8S_CONFIG | base64 --decode > ~/.kube/config
+  - cd eds-frontend
+  - helm upgrade --atomic --values $values --install
+    --set APP_IMAGE=$APP_IMAGE
+    --set REPLICA_COUNT=$REPLICA_COUNT
+    --set JOB_activeDeadlineSeconds=$JOB_activeDeadlineSeconds
+    --set RegistryConfig=$RegistryConfig
+    --namespace eds
+    $Name-eds-frontend .
+
+deploy-staging:
+  stage: deploy
+  image: cr.yandex/crpk51ud2cjku2i8e2b6/helm-deploy:master
+  before_script:
+    - export K8S_CONFIG=$K8S_CONFIG_TEST01
+    - export Name="staging"
+    - export REPLICA_COUNT='1'
+    - export values="values.staging.yaml"
+  script: *deploy
+  tags:
+    - k8s-test01
+  only:
+    - master
+
+deploy-production:
+  stage: deploy
+  image: cr.yandex/crpk51ud2cjku2i8e2b6/helm-deploy:master
+  before_script:
+    - export K8S_CONFIG=$K8S_CONFIG_PRODUCTION
+    - export Name="production"
+    - export REPLICA_COUNT='1'
+    - export values="values.production.yaml"
+  script: *deploy
+  tags:
+    - k8s-production
+  when: manual
+  only:
+    - master
