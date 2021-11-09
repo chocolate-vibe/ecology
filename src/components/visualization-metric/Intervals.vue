@@ -43,11 +43,11 @@ export default class Intervals extends Vue {
   width: 70%;
     &::-webkit-scrollbar {
       width: 5px;
-      background: $cstm-grey-darken-4;
+      background: --grey-darken-4;
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 2px;
-      background: $cstm-grey-darken-3;
+      background: --grey-darken-3;
     }
 }
 

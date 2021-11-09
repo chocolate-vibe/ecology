@@ -1,38 +1,31 @@
 <template>
-  <v-navigation-drawer
-    expand-on-hover
-    app
-    width="270"
-    class="drawer"
-  >
+  <v-navigation-drawer v-if="user" expand-on-hover app width="270" class="drawer">
     <v-list>
-      <v-list-item
-        link
-        class="px-2 list-item"
-      >
+      <v-list-item link class="px-2 list-item">
         <v-list-item-avatar>
           <user-avatar
-            :user="$auth.user"
+            :user="user"
             class="mr-2 mt-1"
             size="40"
           />
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            {{ $getMyName() }}
+            {{ user.lastName }} {{ user.firstName }}
           </v-list-item-title>
-          <v-list-item-subtitle class="text-subtitle-1">{{ $getMyRole().description }}</v-list-item-subtitle>
-          <v-list-item-subtitle class="text-subtitle-2 font-weight-thin">{{ $auth.user.email }}</v-list-item-subtitle>
+          <v-list-item-subtitle class="text-subtitle-1">
+            {{ user.role.description }}
+          </v-list-item-subtitle>
+          <v-list-item-subtitle class="text-subtitle-2 font-weight-thin">
+            {{ user.email }}
+          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
 
-    <v-divider/>
+    <v-divider />
 
-    <v-list
-      dense
-      nav
-    >
+    <v-list dense nav>
       <v-list-item
         v-for="item in filtredList"
         :key="item.title"
@@ -49,10 +42,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item
-        v-if="$auth.loggedIn"
-        @click="logout()"
-      >
+      <v-list-item @click="logout()">
         <v-list-item-icon>
           <v-icon>mdi-logout</v-icon>
         </v-list-item-icon>
@@ -68,6 +58,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import UserAvatar from '@/components/UserAvatar.vue';
+import { store } from '@/store';
+import { IUser } from '@/types/user';
 
 @Component({
   components: {
@@ -76,7 +68,7 @@ import UserAvatar from '@/components/UserAvatar.vue';
 })
 export default class Drawer extends Vue {
   list = [
-    { title: 'Анализ уроков', icon: 'mdi-video-account', link: '/lesson/' },
+    { title: 'Анализ уроков', icon: 'mdi-video-account', link: '/' },
     {
       title: 'Пользователи',
       icon: 'mdi-account-star',
@@ -92,16 +84,22 @@ export default class Drawer extends Vue {
     },
   ];
 
+  get user(): IUser | undefined {
+    return store.auth.getters.user;
+  }
+
   get filtredList() {
     return this.list.filter((item) => {
-      if (item.roles !== undefined) return item.roles.includes(this.$getMyRole().value);
+      if (item.roles !== undefined) {
+        return this.user ? item.roles.includes(this.user.role?.value) : false;
+      }
       return true;
     });
   }
 
   async logout() {
-    // await this.$auth.logout();
-    alert('logout');
+    store.auth.mutations.logout();
+    this.$router.push('/login');
   }
 }
 </script>

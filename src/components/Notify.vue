@@ -6,7 +6,6 @@
     <v-alert
       v-bind="paramsNotify"
       @click="snackbar = false"
-      tile
     >
       {{ paramsNotify.content }}
     </v-alert>

@@ -9,7 +9,7 @@ export interface IUser {
   activated: boolean;
   createdAt: string;
   updatedAt: string;
-  role?: IRole;
+  role: IRole;
   comments?: IFeedback;
 }
 

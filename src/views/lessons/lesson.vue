@@ -8,6 +8,7 @@
       class="player__wrap"
     >
       <video-player
+        v-if="lesson"
         ref="video-player"
         :src="lesson.videoSource"
         :poster="lesson.previewSource"
@@ -28,18 +29,19 @@
       style="padding-top: 68vh"
     >
       <user-avatar
+        v-if="lesson"
         :user="lesson.educationGroup.teacher"
         size="40"
         class="mr-3"
       />
-      <div>
+      <div v-if="lesson">
         <h2>
           {{ lesson.educationGroup.teacher.lastName }} {{ lesson.educationGroup.teacher.firstName }} - {{ lesson.title }}
         </h2>
         <span class="grey--text darken-3 text-caption">{{ lesson.educationGroup.title }}</span>
       </div>
     </div>
-    <TextMetric
+    <text-metric
       :data="textMetrics"
       class="mb-6 mx-3"
     />
@@ -203,7 +205,7 @@ import { IVisualMetric, metricValuesWithIntervals, metricValuesWithPoints, visua
     TextMetric,
   },
 })
-export default class VdpViewPage extends Vue {
+export default class LessonPage extends Vue {
   @Ref('video-container') videoContainer!: HTMLDivElement;
   @Ref('video-player') videoPlayer!: any;
 
@@ -290,12 +292,7 @@ export default class VdpViewPage extends Vue {
    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    */
 
-  // mounted() {
-  //   store.chat.actions.fetchChatMessages(Number(this.$route.params.id));
-  //   store.feedback.actions.fetchCommentsByLesson(Number(this.$route.params.id));
-  //   store.metrics.actions.init(Number(this.$route.params.id));
-  // }
-  async fetch() {
+  async mounted() {
     const lessonId = parseInt(this.$route.params.id);
     await store.chat.actions.fetchChatMessages(lessonId);
     await store.feedback.actions.fetchCommentsByLesson(lessonId);

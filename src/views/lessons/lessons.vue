@@ -1,12 +1,10 @@
 <template>
-  <client-only>
     <div>
       <div class="top-bar">
         <div class="d-flex justify-space-beetween align-center pt-4">
           <v-combobox
             v-model="filterTeamLeader"
             :items="teamLeaders"
-            @change="selectTeamLeader()"
             clearable
             label="Выберите тимлидера"
             item-text="fullName"
@@ -15,37 +13,39 @@
             outlined
             background-color="grey darken-4"
             hide-details
+            @change="selectTeamLeader()"
+            class="rounded-0"
           />
           <v-combobox
             v-model="filterTeacher"
             :items="teachers"
-            @change="selectTeacher()"
             clearable
             label="Выберите преподавателя"
             item-text="fullName"
             item-value="id"
             color="green"
             outlined
-            class="ml-3"
+            class="ml-3 rounded-0"
             background-color="grey darken-4"
             hide-details
+            @change="selectTeacher()"
           />
         </div>
 
         <v-combobox
           v-model="filterGroup"
           :items="educationGroups"
-          @change="selectGroup()"
           width="false"
           clearable
           label="Выберите группу"
           color="green"
           outlined
           hide-details
-          class="mt-4"
+          class="mt-4 rounded-0"
           item-text="title"
           item-value="id"
           background-color="grey darken-4"
+          @change="selectGroup()"
         />
       </div>
       <div class="pa-6">
@@ -54,28 +54,27 @@
         >
           <video-card
             v-for="(lesson, index) in lessons"
-            :lessonId="lesson.id"
+            :key="`${lesson.id}_${index}`"
+            :lesson-id="lesson.id"
             :title="lesson.title"
             :teacher="lesson.educationGroup.teacher"
-            :posterUrl="lesson.previewSource"
+            :poster-url="lesson.previewSource"
             :loading="isLoading"
-            :key="`${lesson.id}_${index}`"
             class="video-list__card mb-6"
           />
         </div>
       </div>
       <infinite-loading
-        @infinite="fetchNextLessons"
         v-if="!getStateScroll"
         spinner="waveDots"
         class="grey--text"
+        @infinite="fetchNextLessons"
       >
         <span slot="no-more"/>
         <span slot="no-results">Нет результата...</span>
         <span slot="error">Ошибка...</span>
       </infinite-loading>
     </div>
-  </client-only>
 </template>
 
 <script lang="ts">
@@ -98,7 +97,7 @@ import VideoCard from '@/components/cards/VideoCard.vue';
 export default class LessonsPage extends Vue {
   protected onlyTeamLeaders = false;
 
-  async fetch() {
+  async mounted() {
     await store.main.actions.fetchTeamLeadersWithLessons();
     await store.main.actions.fetchTeachersWithLessons();
     await store.main.actions.fetchEducationGroupWithLessons();

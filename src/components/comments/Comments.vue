@@ -159,11 +159,11 @@ export default class Comments extends Vue {
     overflow-x: hidden;
     &::-webkit-scrollbar {
         width: 5px;
-        background: $cstm-grey-darken-4;
+        background: var(--grey-darken-4);
     }
     &::-webkit-scrollbar-thumb {
         border-radius: 2px;
-        background: $cstm-grey-darken-3;
+        background: var(--grey-darken-3);
     }
   }
   &__add {

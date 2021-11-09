@@ -15,7 +15,7 @@
           {{ name }}
         </div>
       </div>
-      <vue-apex-charts
+      <apex-chart
         :options="chartOptions"
         :series="series"
       />
@@ -40,12 +40,13 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import ApexChart from 'vue-apexcharts';
 import { chartLineExtandedValues, ITextMetric } from '@/types/metric';
 import TimestampButtons from '@/components/visualization-metric/TimestampButtons.vue';
 import { IChatMessage } from '@/types/chat';
 import Chat from '@/components/chat/index.vue';
 
-@Component({ name: 'LineChartExtanded', components: { TimestampButtons, Chat } })
+@Component({ name: 'LineChartExtanded', components: { TimestampButtons, Chat, ApexChart } })
 export default class LineChartExtanded extends Vue {
   @Prop() protected readonly data!: Array<IChatMessage>;
   @Prop() protected readonly text!: ITextMetric;

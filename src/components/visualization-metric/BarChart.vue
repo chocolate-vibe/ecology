@@ -1,6 +1,6 @@
 <template>
   <div class="bar-chart">
-    <vue-apex-charts
+    <apex-chart
       :options="chartOptions"
       :series="series"
       class="bar-chart__left"
@@ -15,10 +15,11 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import ApexChart from 'vue-apexcharts';
 import { chartBarValue, chartBarValues } from '@/types/metric';
 import TimestampButtons from '@/components/visualization-metric/TimestampButtons.vue';
 
-@Component({ name: 'BarChart', components: { TimestampButtons } })
+@Component({ name: 'BarChart', components: { TimestampButtons, ApexChart } })
 export default class BarChart extends Vue {
   @Prop() private readonly data!: chartBarValues;
   private xNames: Array<string> = [];

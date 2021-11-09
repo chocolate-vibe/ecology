@@ -8,4 +8,9 @@ export class AuthMutations extends Mutations<AuthState> {
     if (token) this.state.user = jwtDecode(token);
     else this.state.user = undefined;
   }
+
+  logout(): void {
+    localStorage.removeItem('auth_token');
+    this.state.user = undefined;
+  }
 }

@@ -1,31 +1,29 @@
 <template>
-  <v-app>
-    <router-view />
-    <loader :loading="storeData.isLoading"/>
-  </v-app>
+  <v-main>
+    <v-container fluid ma-0 pa-0>
+      <navigation v-if="isAdmin" :tabs="tabs" />
+      <router-view />
+    </v-container>
+  </v-main>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Loader from '@/components/Loader.vue';
-import { store } from '@/store';
+import Navigation from '@/components/navigation/header-tabs.vue';
 
 @Component({
   components: {
-    Loader,
+    Navigation,
   },
 })
-export default class LayoutDefault extends Vue {
-  get storeData() {
-    return {
-      isLoading: store.root.state.isLoading,
-    };
+export default class extends Vue {
+  tabs = [
+    { title: 'Пользователи', icon: 'mdi-account-search', link: '/admin/users' },
+    { title: 'Обратная связь', icon: 'mdi-comment', link: '/admin/feedback' },
+    { title: 'Другое', icon: 'mdi-all-inclusive-box', link: '/admin/other' },
+  ];
+  get isAdmin() {
+    return this.$route.path.startsWith('/admin');
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.app {
-  height: 100%;
-}
-</style>

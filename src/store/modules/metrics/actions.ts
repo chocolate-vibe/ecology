@@ -1,8 +1,8 @@
 import { Actions } from 'vuex-smart-module';
+// eslint-disable-next-line import/no-cycle
 import { MetricMutations } from './mutations';
 import { MetricState } from './state';
-import MetricApi from '@/api/metric.api';
-import LessonApi from '@/api/lesson.api';
+import { API } from '@/services/api';
 
 export class MetricActions extends Actions<
 MetricState,
@@ -16,15 +16,11 @@ MetricActions
   }
 
   async getLesson(lessonId: number) {
-    const lessonData = await LessonApi.getLessonById(lessonId);
+    const lessonData = (await API.lesson.getLessonById(lessonId)).data;
     this.mutations.setLesson(lessonData);
   }
   async getLessonMetrics(lessonId: number) {
-    const metrics = await MetricApi.getMetrics(lessonId);
+    const metrics = (await API.metric.getMetrics(lessonId)).data;
     this.mutations.setMetrics(metrics);
   }
-
-  // checkLesson() {
-  //   if (this.state.lesson?.id) LessonApi.check(this.state.lesson.id);
-  // }
 }

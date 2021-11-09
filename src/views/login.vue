@@ -24,12 +24,14 @@
         />
       </v-form>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions class="pa-4">
       <v-btn
         :disabled="!isValid"
         @click="signIn"
         color="success"
-        class="ml-2 mb-3 rounded-0"
+        class="rounded-0"
+        large
+        width="100%"
       >
         Войти
       </v-btn>
@@ -40,50 +42,35 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { store } from '@/store';
 import { emailRules, passwordRules } from '@/utils/validation';
+import text from '@/utils/text';
 
 @Component
 export default class LoginPage extends Vue {
   private errors = '';
   loading = false;
-  email = null;
-  password = null;
+  email = '';
+  password = '';
   isValid = false;
   emailRules = emailRules;
   passwordRules = passwordRules;
 
-  // async userLogin(): Promise<void> {
-  //   return this.$auth
-  //     .loginWith('local', {
-  //       data: { email: this.email, password: this.password },
-  //     })
-  //     .then(() => {
-  //       store.notify.mutations.showNotify({
-  //         type: 'success',
-  //         content: 'Добро пожаловать!',
-  //       });
-  //     })
-  //     .catch((err: any) => {
-  //       this.errors = err.response.data.error;
-  //       store.notify.mutations.showNotify({ type: 'error', content: this.errors });
-  //     });
-  // }
   async signIn(): Promise<void> {
-    try {
-      if (this.email && this.password) {
-        await store.auth.actions.fetchAuth({ email: this.email, password: this.password })
-          .then(() => {
-            store.notify.mutations.showNotify({
-              type: 'success',
-              content: 'Добро пожаловать!',
-            });
-          })
-          .catch((err: any) => {
-            this.errors = err.response.data.error;
-            store.notify.mutations.showNotify({ type: 'error', content: this.errors });
+    if (this.email && this.password) {
+      await store.auth.actions
+        .fetchAuth({ email: this.email, password: this.password })
+        .then(() => {
+          store.notify.mutations.showNotify({
+            type: 'success',
+            content: text.login,
           });
-      }
-    } catch (err) {
-      console.log(err);
+          this.$router.push('/').catch(() => ({}));
+        })
+        .catch((error: string) => {
+          store.notify.mutations.showNotify({
+            type: 'error',
+            content: error,
+          });
+        });
     }
   }
 }

@@ -10,5 +10,4 @@ export const storeInstance = createStore(
   baseModule,
 );
 
-console.log('STORE', baseModule.context(storeInstance));
 export const store = baseModule.context(storeInstance).modules;

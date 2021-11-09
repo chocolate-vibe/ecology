@@ -1,6 +1,6 @@
 <template>
   <div class="polar-chart">
-    <vue-apex-charts
+    <apex-chart
       :options="chartOptions"
       :series="series"
     />
@@ -8,9 +8,10 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import ApexChart from 'vue-apexcharts';
 import { chartRadarValue, chartRadarValues } from '@/types/metric';
 
-@Component({ name: 'PolarChart' })
+@Component({ name: 'PolarChart', components: { ApexChart } })
 export default class RadarChart extends Vue {
   @Prop() private readonly data!: chartRadarValues;
   @Prop() private readonly text?: any;

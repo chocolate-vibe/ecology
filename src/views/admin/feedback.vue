@@ -117,16 +117,11 @@ import { IUser } from '@/types/user';
 import Comment from '@/components/comments/Comment.vue';
 import UserAvatar from '@/components/UserAvatar.vue';
 // Api
-import FeedbackApi from '@/api/feedback.api';
-import UsersApi from '@/api/users.api';
+import { API } from '@/services/api';
 // Store
 import { store } from '@/store';
 
-
 @Component({
-  head: {
-    title: 'Обратная связь',
-  },
   components: {
     Comment,
     UserAvatar,
@@ -140,14 +135,14 @@ export default class extends Vue {
   public newStatus = false;
   public commentsList: any = [];
 
-  async fetch() {
-    this.comments = await FeedbackApi.fetchAll();
-    this.users = await UsersApi.getUsersWithComments();
+  async mounted() {
+    this.comments = (await API.feedback.fetchAll()).data;
+    this.users = (await API.users.getUsersWithComments()).data;
     this.setCommentsList();
   }
 
   setCommentsList() {
-    const list = [this.comments, ...this.users.map(user => user.comments)];
+    const list = [this.comments, ...this.users.map((user) => user.comments)];
     list.forEach(() => this.selectedComments.push([]));
     this.commentsList = list;
   }
@@ -159,7 +154,7 @@ export default class extends Vue {
 
   async changeCommentStatus(commentId: number, newStatus: boolean) {
     try {
-      const { id, status } = await FeedbackApi.updateStatus(commentId, !newStatus);
+      const { id, status } = (await API.feedback.updateStatus(commentId, !newStatus)).data;
       this.commentsList.forEach((arrayComments: IFeedback[]) => {
         arrayComments.forEach((comment: IFeedback) => {
           if (comment.id === id) comment.status = status;
@@ -174,7 +169,6 @@ export default class extends Vue {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .list-item-group {
@@ -193,7 +187,7 @@ export default class extends Vue {
 }
 
 .v-item--active {
-  background: $cstm-grey-darken-5 !important;
+  background: --grey-darken-5 !important;
 }
 
 .feedback {

@@ -315,11 +315,11 @@ export default class ChatComponent extends Vue {
   padding-right: 5px;
   &::-webkit-scrollbar {
       width: 5px;
-      background: $cstm-grey-darken-4;
+      background: --grey-darken-4;
   }
   &::-webkit-scrollbar-thumb {
       border-radius: 2px;
-      background: $cstm-grey-darken-3;
+      background: --grey-darken-3;
   }
 }
 
@@ -331,7 +331,7 @@ export default class ChatComponent extends Vue {
   transition: .3s;
   &:hover {
     filter: brightness(140%);
-    background: $cstm-grey-darken-4;
+    background: --grey-darken-4;
   }
 }
 

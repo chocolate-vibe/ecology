@@ -1,6 +1,6 @@
 <template>
   <div class="donut-chart">
-    <vue-apex-charts
+    <apex-chart
       :options="chartOptions"
       :series="series"
     />
@@ -8,9 +8,10 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import ApexChart from 'vue-apexcharts';
 import { chartDonutExtendedValue, chartDonutExtendedValues } from '@/types/metric';
 
-@Component({ name: 'DonutChart' })
+@Component({ name: 'DonutChart', components: { ApexChart } })
 export default class DonutChart extends Vue {
   @Prop() private readonly data!: chartDonutExtendedValues;
   @Prop() private readonly text?: any;

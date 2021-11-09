@@ -15,7 +15,7 @@
           {{ name }}
         </div>
       </div>
-      <vue-apex-charts :options="chartOptions" :series="series" />
+      <apex-chart :options="chartOptions" :series="series" />
     </div>
     <timestamp-buttons
       v-if="timestampsButtons[selectedTab]"
@@ -29,10 +29,11 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import ApexChart from 'vue-apexcharts';
 import { chartLineValues } from '@/types/metric';
 import TimestampButtons from '@/components/visualization-metric/TimestampButtons.vue';
 
-@Component({ name: 'LineChart', components: { TimestampButtons } })
+@Component({ name: 'LineChart', components: { TimestampButtons, ApexChart } })
 export default class LineChart extends Vue {
   @Prop() private readonly data!: chartLineValues;
   @Prop() private readonly videoDuration!: number;

@@ -97,9 +97,8 @@ export default class Comment extends Vue {
   }
 
   get isMyComment() {
-    alert('isMyComment');
-    // return this.$auth.user.id === this.user.id;
-    return true;
+    const { user } = store.auth.getters;
+    return user?.id === this.user.id;
   }
 
   get color() {

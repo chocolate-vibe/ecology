@@ -1,8 +1,11 @@
 <template>
-  <v-overlay v-model="value" color="transparent">
+  <v-overlay
+    v-model="value"
+    color="transparent"
+  >
     <v-card
-      class="login"
       v-click-outside="hide"
+      class="login"
       light
       tile
       width="400"
@@ -28,9 +31,9 @@
       <v-card-actions>
         <v-btn
           :disabled="!isValid"
-          @click="login"
           color="success"
           class="ml-2 mb-3 rounded-0"
+          @click="login"
         >
           Войти
         </v-btn>

@@ -28,5 +28,6 @@ module.exports = {
     'no-plusplus': 'off',
     radix: 'off',
     'import/no-unresolved': 'off',
+    'import/no-cycle': 'off'
   },
 };

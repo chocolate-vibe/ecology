@@ -118,11 +118,11 @@ export default class HorizontalScroll extends Vue {
   &::-webkit-scrollbar {
     display: none;
     height: 5px;
-    background: $cstm-grey-darken-4;
+    background: --grey-darken-4;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: $cstm-grey-darken-3;
+    background: --grey-darken-3;
   }
   &.scrollbar {
     &::-webkit-scrollbar {

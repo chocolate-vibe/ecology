@@ -5,26 +5,13 @@
     sort-by="calories"
     class="elevation-1"
   >
-    <template
-      id="1"
-      v-slot:top
-    >
+    <template id="1" v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>Пользователи</v-toolbar-title>
-        <v-divider
-          class="mx-4"
-          inset
-          vertical
-        />
-        <v-spacer/>
-        <v-dialog
-          v-model="dialog"
-          max-width="500px"
-        >
-          <template
-            id="2"
-            v-slot:activator="{ on, attrs }"
-          >
+        <v-divider class="mx-4" inset vertical />
+        <v-spacer />
+        <v-dialog v-model="dialog" max-width="500px">
+          <template id="2" v-slot:activator="{ on, attrs }">
             <v-btn
               v-bind="attrs"
               v-on="on"
@@ -43,10 +30,7 @@
             <!-- Редактирование / создание -->
             <v-card-text>
               <v-container>
-                <v-form
-                  v-model="rules.isValid"
-                  autocomplete="off"
-                >
+                <v-form v-model="rules.isValid" autocomplete="off">
                   <v-row>
                     <v-text-field
                       v-model="editedItem.email"
@@ -102,14 +86,8 @@
             </v-card-text>
 
             <v-card-actions>
-              <v-spacer/>
-              <v-btn
-                @click="close"
-                color="red darken-1"
-                text
-              >
-                Отмена
-              </v-btn>
+              <v-spacer />
+              <v-btn @click="close" color="red darken-1" text> Отмена </v-btn>
               <v-btn
                 @click="save"
                 :color="`${buttonSaveCreate.color} darken-1`"
@@ -121,62 +99,17 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-
-        <!-- Подтверждение удаления  -->
-        <!-- <v-dialog
-          v-model="dialogDelete"
-          max-width="500px"
-        >
-          <v-card>
-            <v-card-title class="text-h5">
-              Удалить этого пользователя?
-            </v-card-title>
-            <v-card-actions>
-              <v-spacer/>
-              <v-btn
-                @click="closeDelete"
-                color="blue darken-1"
-                text
-              >
-                Отмена
-              </v-btn>
-              <v-btn
-                @click="deleteItemConfirm"
-                color="blue darken-1"
-                text
-              >
-                OK
-              </v-btn>
-              <v-spacer/>
-            </v-card-actions>
-          </v-card>
-        </v-dialog> -->
       </v-toolbar>
     </template>
 
     <!-- Стилизация чекбокса -->
-    <template
-      id="3"
-      v-slot:[`item.activated`]="{ item }"
-    >
-      <v-simple-checkbox
-        v-model="item.activated"
-        disabled
-      />
+    <template id="3" v-slot:[`item.activated`]="{ item }">
+      <v-simple-checkbox v-model="item.activated" disabled />
     </template>
 
     <!-- Кнопка Редактировать / Удалить -->
-    <template
-      id="4"
-      v-slot:[`item.actions`]="{ item }"
-    >
-      <v-icon
-        @click="editItem(item)"
-        medium
-        class="mr-2"
-      >
-        mdi-pencil
-      </v-icon>
+    <template id="4" v-slot:[`item.actions`]="{ item }">
+      <v-icon @click="editItem(item)" medium class="mr-2"> mdi-pencil </v-icon>
       <!-- <v-icon
         @click="deleteItem(item)"
         small
@@ -185,25 +118,19 @@
         mdi-delete
       </v-icon> -->
     </template>
-    <template
-      id="5"
-      v-slot:no-data
-    >
-      <v-btn
-        @click="getUsers"
-        color="primary"
-      >
-        Reset
-      </v-btn>
+    <template id="5" v-slot:no-data>
+      <v-btn @click="getUsers" color="primary"> Reset </v-btn>
     </template>
   </v-data-table>
 </template>
 
 <script lang="ts">
-import { Component, Vue, getModule, Watch } from 'vue-property-decorator';
-import UsersApi from '@/api/users.api';
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import { API } from '@/services/api';
 import { store } from '@/store';
 import { IUser } from '@/types/user';
+import text from '@/utils/text';
+import { emailRules, passwordEdit, passwordCreate, name } from '@/utils/validation';
 /**
  * https://vuetifyjs.com/en/components/data-tables/#crud-actions
  */
@@ -245,33 +172,22 @@ export default class TeachersPage extends Vue {
   rules = {
     isValid: true,
     showPassword: false,
-    email: [
-      (v: string) => !!v || 'Введите Email',
-      (v: string) => /.+@.+/.test(v) || 'E-mail некорректный',
-    ],
-    passwordEdit: [
-      (v: string) => !v
-        || (v && v.length >= 5 && v.length <= 16)
-        || 'Пароль должен быть больше 4 и меньше 16 символов',
-    ],
-    passwordCreate: [
-      (v: string) => !!v || 'Введите пароль',
-      (v: string) => (v && v.length >= 5 && v.length <= 16)
-        || 'Пароль должен быть больше 4 и меньше 16 символов',
-    ],
-    name: [(v: string) => !!v || 'Поле не может быть пустым'],
+    email: emailRules,
+    passwordEdit,
+    passwordCreate,
+    name,
   };
 
   get formTitle() {
     return this.editedIndex === -1
-      ? 'Создать пользователя'
-      : 'Редактировать пользователя';
+      ? text.user.titleCreate
+      : text.user.titleEdit;
   }
 
   get buttonSaveCreate() {
     return this.editedIndex === -1
-      ? { title: 'Создать', color: 'green' }
-      : { title: 'Сохранить', color: 'blue' };
+      ? { title: text.user.buttonCreate, color: 'green' }
+      : { title: text.user.buttonSave, color: 'blue' };
   }
 
   @Watch('dialog')
@@ -290,15 +206,13 @@ export default class TeachersPage extends Vue {
 
   async getUsers() {
     try {
-      const users = await UsersApi.fetchAll();
+      const users = (await API.users.fetchAll()).data;
       if (users) {
-        this.users = users.map((user) => {
-          return {
-            ...user,
-            createdAt: this.$formattingTimeDate(user.createdAt, ' '),
-            updatedAt: this.$formattingTimeDate(user.updatedAt, ' '),
-          };
-        });
+        this.users = users.map((user) => ({
+          ...user,
+          createdAt: this.$formattingTimeDate(user.createdAt, ' '),
+          updatedAt: this.$formattingTimeDate(user.updatedAt, ' '),
+        }));
       }
     } catch (error: any) {
       store.notify.mutations.showNotify({
@@ -310,15 +224,9 @@ export default class TeachersPage extends Vue {
 
   editItem(item: any) {
     this.editedIndex = this.users.indexOf(item);
-    this.editedItem = Object.assign({}, item);
+    this.editedItem = { ...item };
     this.dialog = true;
   }
-
-  // deleteItem(item: any) {
-  //   this.editedIndex = this.users.indexOf(item);
-  //   this.editedItem = Object.assign({}, item);
-  //   this.dialogDelete = true;
-  // }
 
   deleteItemConfirm() {
     this.users.splice(this.editedIndex, 1);
@@ -328,7 +236,7 @@ export default class TeachersPage extends Vue {
   close() {
     this.dialog = false;
     this.$nextTick(() => {
-      this.editedItem = Object.assign({}, this.defaultItem);
+      this.editedItem = { ...this.defaultItem };
       this.editedIndex = -1;
     });
   }
@@ -336,7 +244,7 @@ export default class TeachersPage extends Vue {
   closeDelete() {
     this.dialogDelete = false;
     this.$nextTick(() => {
-      this.editedItem = Object.assign({}, this.defaultItem);
+      this.editedItem = { ...this.defaultItem };
       this.editedIndex = -1;
     });
   }
@@ -351,7 +259,7 @@ export default class TeachersPage extends Vue {
 
   async createUser() {
     try {
-      const user = await UsersApi.create(this.editedItem);
+      const user = (await API.users.create(this.editedItem)).data;
       if (user) {
         this.users.push({
           ...user,
@@ -362,7 +270,7 @@ export default class TeachersPage extends Vue {
       this.close();
       store.notify.mutations.showNotify({
         type: 'success',
-        content: 'Пользователь успешно создан',
+        content: text.user.updated,
       });
     } catch (error: any) {
       store.notify.mutations.showNotify({
@@ -374,7 +282,7 @@ export default class TeachersPage extends Vue {
 
   async updateUser() {
     try {
-      const user = await UsersApi.update(this.editedItem);
+      const user = (await API.users.update(this.editedItem)).data;
       if (user) {
         Object.assign(this.users[this.editedIndex], {
           ...user,
@@ -385,7 +293,7 @@ export default class TeachersPage extends Vue {
       this.close();
       store.notify.mutations.showNotify({
         type: 'success',
-        content: 'Пользователь успешно изменён',
+        content: text.user.created,
       });
     } catch (error: any) {
       store.notify.mutations.showNotify({
