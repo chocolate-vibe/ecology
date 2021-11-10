@@ -44,6 +44,10 @@ const rgbToHex = (rgb: RGB): string => { // конвертирует RGB цве�
 
 const AccessPlugin = {
   install(Vue: VueConstructor) {
+    /**
+     * https://vuetifyjs.com/en/styles/colors/#material-colors
+     */
+    Vue.prototype.$accent = 'green';
     Vue.prototype.$colorRandomRGB = (modificator: modificator = 'pale'): RGB | undefined => rgbGenerator(modificator);
     Vue.prototype.$colorRandomHEX = (modificator: modificator = 'pale'): string => rgbToHex(rgbGenerator(modificator));
     Vue.prototype.$getUserColor = (userId: number, modificator: modificator = 'dark'): string => {
@@ -82,6 +86,7 @@ const AccessPlugin = {
 
 declare module 'vue/types/vue' {
   interface Vue {
+    $accent: string
     $colorRandomRGB(modificator?: modificator): RGB
     $colorRandomHEX(modificator?: modificator): string
     $colorTextRandomRGB(): { r: number, g: number, b: number }

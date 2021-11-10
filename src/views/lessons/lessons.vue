@@ -8,11 +8,11 @@
         label="Выберите тимлидера"
         item-text="fullName"
         item-value="id"
-        color="green"
+        :color="$accent"
         outlined
         background-color="grey darken-4"
         hide-details
-        class="top-bar__teamleader rounded-0"
+        class="top-bar__teamleader"
         @change="selectTeamLeader()"
       />
       <v-combobox
@@ -22,9 +22,9 @@
         label="Выберите преподавателя"
         item-text="fullName"
         item-value="id"
-        color="green"
+        :color="$accent"
         outlined
-        class="top-bar__teacher ml-3 rounded-0"
+        class="top-bar__teacher ml-3"
         background-color="grey darken-4"
         hide-details
         @change="selectTeacher()"
@@ -36,10 +36,10 @@
         width="false"
         clearable
         label="Выберите группу"
-        color="green"
+        :color="$accent"
         outlined
         hide-details
-        class="top-bar__group ml-3 rounded-0"
+        class="top-bar__group ml-3"
         item-text="title"
         item-value="id"
         background-color="grey darken-4"

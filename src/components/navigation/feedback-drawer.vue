@@ -1,10 +1,10 @@
 <template>
   <div class="feedback-drawer">
     <v-btn
-      @click="drawer = !drawer"
       class="feedback-drawer__button"
       tile
-      color="green"
+      :color="$accent"
+      @click="drawer = !drawer"
     >
       Обратная связь
     </v-btn>

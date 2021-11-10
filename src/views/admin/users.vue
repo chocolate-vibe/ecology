@@ -5,19 +5,32 @@
     sort-by="calories"
     class="elevation-1"
   >
-    <template id="1" v-slot:top>
+    <template
+      id="1"
+      v-slot:top
+    >
       <v-toolbar flat>
         <v-toolbar-title>Пользователи</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical />
+        <v-divider
+          class="mx-4"
+          inset
+          vertical
+        />
         <v-spacer />
-        <v-dialog v-model="dialog" max-width="500px">
-          <template id="2" v-slot:activator="{ on, attrs }">
+        <v-dialog
+          v-model="dialog"
+          max-width="500px"
+        >
+          <template
+            id="2"
+            v-slot:activator="{ on, attrs }"
+          >
             <v-btn
               v-bind="attrs"
-              v-on="on"
-              color="success"
+              :color="$accent"
               dark
               class="mb-2 rounded-0"
+              v-on="on"
             >
               + Добавить
             </v-btn>
@@ -30,7 +43,10 @@
             <!-- Редактирование / создание -->
             <v-card-text>
               <v-container>
-                <v-form v-model="rules.isValid" autocomplete="off">
+                <v-form
+                  v-model="rules.isValid"
+                  autocomplete="off"
+                >
                   <v-row>
                     <v-text-field
                       v-model="editedItem.email"
@@ -67,10 +83,10 @@
                         rules.showPassword ? 'mdi-eye' : 'mdi-eye-off'
                       "
                       :type="rules.showPassword ? 'text' : 'password'"
-                      @click:append="rules.showPassword = !rules.showPassword"
                       :label="editedIndex !== -1 ? 'Новый Пароль' : 'Пароль'"
                       autocomplete="off"
                       counter="16"
+                      @click:append="rules.showPassword = !rules.showPassword"
                     />
                   </v-row>
                   <v-row v-if="editedIndex !== -1">
@@ -87,12 +103,18 @@
 
             <v-card-actions>
               <v-spacer />
-              <v-btn @click="close" color="red darken-1" text> Отмена </v-btn>
               <v-btn
-                @click="save"
+                color="red darken-1"
+                text
+                @click="close"
+              >
+                Отмена
+              </v-btn>
+              <v-btn
                 :color="`${buttonSaveCreate.color} darken-1`"
                 :disabled="!rules.isValid"
                 text
+                @click="save"
               >
                 {{ buttonSaveCreate.title }}
               </v-btn>
@@ -103,13 +125,28 @@
     </template>
 
     <!-- Стилизация чекбокса -->
-    <template id="3" v-slot:[`item.activated`]="{ item }">
-      <v-simple-checkbox v-model="item.activated" disabled />
+    <template
+      id="3"
+      v-slot:[`item.activated`]="{ item }"
+    >
+      <v-simple-checkbox
+        v-model="item.activated"
+        disabled
+      />
     </template>
 
     <!-- Кнопка Редактировать / Удалить -->
-    <template id="4" v-slot:[`item.actions`]="{ item }">
-      <v-icon @click="editItem(item)" medium class="mr-2"> mdi-pencil </v-icon>
+    <template
+      id="4"
+      v-slot:[`item.actions`]="{ item }"
+    >
+      <v-icon
+        medium
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
       <!-- <v-icon
         @click="deleteItem(item)"
         small
@@ -118,8 +155,16 @@
         mdi-delete
       </v-icon> -->
     </template>
-    <template id="5" v-slot:no-data>
-      <v-btn @click="getUsers" color="primary"> Reset </v-btn>
+    <template
+      id="5"
+      v-slot:no-data
+    >
+      <v-btn
+        color="primary"
+        @click="getUsers"
+      >
+        Reset
+      </v-btn>
     </template>
   </v-data-table>
 </template>
@@ -186,7 +231,7 @@ export default class TeachersPage extends Vue {
 
   get buttonSaveCreate() {
     return this.editedIndex === -1
-      ? { title: text.user.buttonCreate, color: 'green' }
+      ? { title: text.user.buttonCreate, color: this.$accent }
       : { title: text.user.buttonSave, color: 'blue' };
   }
 

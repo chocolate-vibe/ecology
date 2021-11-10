@@ -12,9 +12,9 @@
         ref="video-player"
         :src="lesson.videoSource"
         :poster="lesson.previewSource"
+        class="player__video"
         @timeupdate="(time) => (chatCurrentTime = time)"
         @reset-intervals="resetIntervalsVisual"
-        class="player__video"
       />
       <chat
         :time="chatCurrentTime"
@@ -36,9 +36,12 @@
       />
       <div v-if="lesson">
         <h2>
-          {{ lesson.educationGroup.teacher.lastName }} {{ lesson.educationGroup.teacher.firstName }} - {{ lesson.title }}
+          {{ lesson.educationGroup.teacher.lastName }}
+          {{ lesson.educationGroup.teacher.firstName }} - {{ lesson.title }}
         </h2>
-        <span class="grey--text darken-3 text-caption">{{ lesson.educationGroup.title }}</span>
+        <span class="grey--text darken-3 text-caption">{{
+          lesson.educationGroup.title
+        }}</span>
       </div>
     </div>
     <text-metric
@@ -54,6 +57,8 @@
       background-color="grey darken-4"
       class="metric__container rounded-0"
       style="filter: brightness(130%)"
+      :slider-color="$accent"
+      :color="$accent"
     >
       <v-tab
         v-for="(title, priority) in sectionTitles"
@@ -91,32 +96,41 @@
               <div class="d-flex flex-row justify-space-between align-center">
                 <span class="text-h6">{{ metric.title }}</span>
                 <v-switch
-                  v-if="metricsWithPoints.includes(metric.visualType) || metricsWithIntervals.includes(metric.visualType)"
+                  v-if="
+                    metricsWithPoints.includes(metric.visualType) ||
+                      metricsWithIntervals.includes(metric.visualType)
+                  "
                   v-model="intervalSwitcher"
-                  @click.stop="intervalSwitcher === metric.id ? setIntervalsVisual(metric) : resetIntervalsVisual()"
                   :value="metric.id"
                   label="Показать отметки на видео"
                   color="success"
                   hide-details
                   class="metric__subsection-switch"
+                  @click.stop="
+                    intervalSwitcher === metric.id
+                      ? setIntervalsVisual(metric)
+                      : resetIntervalsVisual()
+                  "
                 />
               </div>
             </v-expansion-panel-header>
-            <v-expansion-panel-content
-              class="pl-3 pr-6 py-3"
-            >
+            <v-expansion-panel-content class="pl-3 pr-6 py-3">
               <div
-                @mouseenter="!intervalSwitcher ? setIntervalsVisual(metric) : ''"
-                @mouseleave="!intervalSwitcher ? resetIntervalsVisual(): ''"
                 class="metric__subsection"
+                @mouseenter="
+                  !intervalSwitcher ? setIntervalsVisual(metric) : ''
+                "
+                @mouseleave="!intervalSwitcher ? resetIntervalsVisual() : ''"
               >
                 <visual-metric
                   v-if="metric"
                   v-bind="metric"
                   :video-duration="videoDuration"
-                  @set-video-time="(from) => setVideoTime(from, metric)"
-                  @set-video-interval="({ from, to }) => setVideoTime(from, metric, to)"
                   title=""
+                  @set-video-time="(from) => setVideoTime(from, metric)"
+                  @set-video-interval="
+                    ({ from, to }) => setVideoTime(from, metric, to)
+                  "
                 />
                 <feedback-drawer>
                   <comments
@@ -140,7 +154,6 @@
             - Аудио метки совпадают с видео?<br>
             <br>
             <div
-              @click="checkLesson()"
               style="
                 border-radius: 5px;
                 display: inline-block;
@@ -148,6 +161,7 @@
                 padding: 7px 25px;
                 cursor: pointer;
               "
+              @click="checkLesson()"
             >
               Урок проверен!
             </div>
@@ -161,7 +175,7 @@
               name="input-7-4"
               label="Добавить комментарий"
               class="mt-3 rounded-0"
-              color="green"
+              :color="$accent"
             />
             <div class="comments__actions">
               <v-btn
@@ -192,7 +206,12 @@ import TextMetric from '@/components/visualization-metric/TextMetric.vue';
 
 // Metrics
 import Comments from '@/components/comments/Comments.vue';
-import { IVisualMetric, metricValuesWithIntervals, metricValuesWithPoints, visualType } from '@/types/metric';
+import {
+  IVisualMetric,
+  metricValuesWithIntervals,
+  metricValuesWithPoints,
+  visualType,
+} from '@/types/metric';
 
 @Component({
   components: {
@@ -214,7 +233,11 @@ export default class LessonPage extends Vue {
   private tab = null; // активная вкладка
   public chatCurrentTime = 0;
   public metricsWithIntervals: Array<visualType> = ['button_intervals'];
-  public metricsWithPoints: Array<visualType> = ['button_time', 'chart_line', 'chart_bar']; // 'button_time_prob',
+  public metricsWithPoints: Array<visualType> = [
+    'button_time',
+    'chart_line',
+    'chart_bar',
+  ]; // 'button_time_prob',
   public intervalSwitcher: number | null = null;
   public intervalStopTime: number | null = null;
 
@@ -309,7 +332,11 @@ export default class LessonPage extends Vue {
     window.removeEventListener('scroll', this.videoPlayerScrollResize);
   }
 
-  setVideoTime(from: number, metric: IVisualMetric, to?: undefined | number): void {
+  setVideoTime(
+    from: number,
+    metric: IVisualMetric,
+    to?: undefined | number,
+  ): void {
     this.videoPlayer.setCurrentTime(from);
     this.videoPlayer.video.play();
     this.intervalSwitcher = metric.id;
@@ -353,7 +380,9 @@ export default class LessonPage extends Vue {
       this.videoPlayer.intervals = metric.value;
       this.videoPlayer.metricTitle = metric.title;
     } else if (this.metricsWithPoints.includes(metric.visualType)) {
-      this.videoPlayer.intervals = this.preparePointsForIntervals(metric.value as metricValuesWithPoints);
+      this.videoPlayer.intervals = this.preparePointsForIntervals(
+        metric.value as metricValuesWithPoints,
+      );
       this.videoPlayer.metricTitle = metric.title;
     } else this.resetIntervalsVisual();
   }
@@ -421,7 +450,7 @@ export default class LessonPage extends Vue {
     min-height: 250px;
   }
   &__subsection-switch {
-    margin-right: 30px ;
+    margin-right: 30px;
     margin-top: 0;
   }
 }

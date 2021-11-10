@@ -174,7 +174,7 @@
             @click="zoomFace = !zoomFace"
           >
             <v-icon
-              :color="zoomFace ? 'green lighten-2' : 'white'"
+              :color="zoomFace ? `${$accent} lighten-2` : 'white'"
               large
               class="face__icon"
             >
@@ -206,7 +206,7 @@
             <v-icon
               :color="
                 showSpeedList || speedList[speedIndx] !== 1
-                  ? 'green lighten-2'
+                  ? `${$accent} lighten-2`
                   : 'white'
               "
               large
@@ -216,7 +216,8 @@
             </v-icon>
             <span
               v-if="speedList[speedIndx] !== 1"
-              class="speed__button-text green--text text--lighten-2"
+              class="speed__button-text text--lighten-2"
+              :class="`${accent}--text`"
               v-html="`x&nbsp;${speedList[speedIndx]}`"
             />
           </button>

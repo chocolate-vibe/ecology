@@ -12,8 +12,6 @@
         !isMyComment ? '' : editable ? 'mdi-delete' : 'mdi-pencil'
       "
       :append-icon="editable && text && !rulesBroken ? 'mdi-check' : ''"
-      @click:append-outer="() => editComment()"
-      @click:append="() => saveComment()"
       :readonly="!editable"
       :color="color"
       :background-color="editable ? 'grey darken-2' : 'grey darken-3'"
@@ -26,6 +24,8 @@
       auto-grow
       rows="1"
       class="body-2"
+      @click:append-outer="() => editComment()"
+      @click:append="() => saveComment()"
     />
     <v-snackbar
       v-model="snackbar"
@@ -33,20 +33,20 @@
       tile
       right
     >
-      {{ 'Удалить этот комментарий?' }}
+      {{ "Удалить этот комментарий?" }}
       <v-btn
-        @click="deleteComment()"
         color="red"
         text
         class="ml-6"
+        @click="deleteComment()"
       >
         Да
       </v-btn>
       <v-btn
-        @click="snackbar = false"
-        color="green"
+        :color="$accent"
         text
         class="ml-1"
+        @click="snackbar = false"
       >
         Нет
       </v-btn>
@@ -103,7 +103,7 @@ export default class Comment extends Vue {
 
   get color() {
     if (this.editable && !this.text) return 'red';
-    return this.editable ? 'green' : 'white';
+    return this.editable ? this.$accent : 'white';
   }
 
   get initials() {
@@ -181,9 +181,10 @@ export default class Comment extends Vue {
     color: white !important;
   }
   .v-input__slot {
-        box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%) !important;
-        cursor: default;
-        border-radius: 17px 0 17px 0 !important;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+      0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%) !important;
+    cursor: default;
+    border-radius: 17px 0 17px 0 !important;
   }
 }
 </style>

@@ -6,8 +6,8 @@
       <div>
         <v-icon
           v-show="usersIsShow"
-          @click="toggleChat()"
           dark
+          @click="toggleChat()"
         >
           mdi-arrow-left
         </v-icon>
@@ -23,9 +23,9 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             v-bind="attrs"
-            v-on="on"
             icon
             dark
+            v-on="on"
           >
             <v-icon dark>mdi-dots-vertical</v-icon>
           </v-btn>
@@ -58,8 +58,8 @@
     </v-card>
     <div
       ref="ChatBody"
-      @scroll="showScrollUp()"
       class="chat__body grey darken-4"
+      @scroll="showScrollUp()"
     >
       <div class="chat-body__inner  pb-5">
         <div
@@ -72,19 +72,19 @@
           "
         />
         <message-list
-          v-show="!usersIsShow"
           v-for="(message, index) in showingMessages"
+          v-show="!usersIsShow"
           :key="index"
           :time="message.time"
           :name="message.username"
           :text="message.message"
-          :nameColor="$getStudentColor(message.username, 'HEX')"
-          :timeIsShow="timeIsShow"
-          @scroll="showScrollUp()"
-          @click.native="rewindable ? $emit('set-video-time', message.time - 1) : ''"
+          :name-color="$getStudentColor(message.username, 'HEX')"
+          :time-is-show="timeIsShow"
           :style="{ cursor: rewindable ? 'pointer' : 'default' }"
           :data-tooltip="rewindable ? `Перемотать на ${$secondsToTime(message.time)}` : ''"
           class="chat-body__message"
+          @scroll="showScrollUp()"
+          @click.native="rewindable ? $emit('set-video-time', message.time - 1) : ''"
         />
         <div
           style="
@@ -98,10 +98,11 @@
       </div>
       <div class="chat-scroll-up">
         <v-icon
-          @click.native="scrollingToNewMessage()"
           v-show="!autoScrolling"
-          class="chat-scroll-up__button green--text"
+          class="chat-scroll-up__button"
+          :class="`${$accent}--text`"
           large
+          @click.native="scrollingToNewMessage()"
         >
           mdi-arrow-down-circle
         </v-icon>

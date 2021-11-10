@@ -3,9 +3,8 @@
     <v-tabs
       background-color="grey darken-3"
       class="rounded-0"
-      slider-color="green"
-      color="green"
-      dark
+      :slider-color="$accent"
+      :color="$accent"
     >
       <v-tab
         v-for="tab in tabs"

@@ -3,9 +3,9 @@
     <div class="comments__header px-6 grey darken-3 text-body-2">
       <div>Обратная связь к метрике</div>
       <v-btn
-        @click="$parent.$parent.close()"
         icon
         color="red lighten-3"
+        @click="$parent.$parent.close()"
       >
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -22,13 +22,13 @@
     >
       <Comment
         v-for="(comment, index) in ChartComments"
-        v-bind="comment"
         :key="`${index}_comments`"
+        v-bind="comment"
       />
       <Comment
         v-for="(comment, index) in newComments"
-        v-bind="comment"
         :key="`${index}_new_comments`"
+        v-bind="comment"
       />
     </div>
     <v-textarea
@@ -36,14 +36,14 @@
       :rules="rules"
       :label="rulesBroken? 'Превышено число символов 255' : 'Добавить комментарий'"
       :append-icon="!enteredText || rulesBroken ? '' : 'mdi-send'"
-      @click:append="sendFeedback"
       filled
       counter
       auto-grow
       rows="4"
       class="comments__add rounded-0 text-body-2"
-      color="green"
+      :color="$accent"
       hide-details
+      @click:append="sendFeedback"
     />
   </div>
 </template>

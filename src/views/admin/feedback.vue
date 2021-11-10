@@ -5,14 +5,14 @@
       three-line
     >
       <v-subheader
-        v-text="'Преподаватели'"
         class="pa-6 grey darken-2"
+        v-text="'Преподаватели'"
       />
       <v-list-item-group
         v-model="selectedItem"
         color="primary"
         mandatory
-        active-class="green--text"
+        :active-class="`${accent}--text`"
         class="list-item-group"
       >
         <v-card class="feedback__user rounded-0">
@@ -52,12 +52,12 @@
         two-line
       >
         <v-subheader
-          v-text="'Комментарии'"
           class="pa-6 grey darken-2"
+          v-text="'Комментарии'"
         />
         <v-list-item-group
           v-model="selectedComments[selectedItem]"
-          active-class="green--text"
+          :active-class="`${accent}--text`"
           multiple
           class="list-item-group grey darken-4"
         >
@@ -72,14 +72,14 @@
                 size="40"
               />
               <v-list-item-content
-                @click="openLessonPage(comment.lessonId)"
                 data-tooltip="Перейти к уроку"
+                @click="openLessonPage(comment.lessonId)"
               >
                 <v-list-item-title v-text="$getUserFullName(comment.user)" />
 
                 <v-list-item-subtitle
-                  v-text="`Урок ${comment.lessonId}`"
                   class="text--primary"
+                  v-text="`Урок ${comment.lessonId}`"
                 />
 
                 <v-list-item-subtitle v-text="comment.comment" />
