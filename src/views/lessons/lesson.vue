@@ -353,7 +353,7 @@ export default class LessonPage extends Vue {
       this.videoPlayer.intervals = metric.value;
       this.videoPlayer.metricTitle = metric.title;
     } else if (this.metricsWithPoints.includes(metric.visualType)) {
-      this.videoPlayer.intervals = this.preparePointsForIntervals(metric.value);
+      this.videoPlayer.intervals = this.preparePointsForIntervals(metric.value as metricValuesWithPoints);
       this.videoPlayer.metricTitle = metric.title;
     } else this.resetIntervalsVisual();
   }

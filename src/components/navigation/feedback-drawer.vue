@@ -14,7 +14,7 @@
       absolute
       width="40%"
     >
-      <slot/>
+      <slot />
     </v-navigation-drawer>
   </div>
 </template>

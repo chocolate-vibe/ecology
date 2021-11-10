@@ -1,7 +1,7 @@
 <template>
   <v-app ma-0 pa-0>
     <notify />
-    <drawer/>
+    <drawer />
     <component :is="layout">
       <router-view />
     </component>

@@ -13,6 +13,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
+    // "noEmit": true, // --
+    // "allowJs": true, // --
     "types": [
       "webpack-env"
     ],
@@ -34,7 +36,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/components/charts/LineBase.js"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -2,11 +2,12 @@ import { Getters } from 'vuex-smart-module';
 import { MainState } from './state';
 
 export class MainGetters extends Getters<MainState> {
-  get getFiltersApi(): { [key: string]: number } {
-    const filters: { teacherId?: number, educationGroupId?: number, teamLeaderId?: number } = {};
+  get getFiltersApi(): { [key: string]: number | string } {
+    const filters: { teacherId?: number, educationGroupId?: number, teamLeaderId?: number, order?: string } = {};
     if (this.state.filterTeamLeader) filters.teamLeaderId = this.state.filterTeamLeader.id;
     if (this.state.filterTeacher) filters.teacherId = this.state.filterTeacher.id;
     if (this.state.filterGroup) filters.educationGroupId = this.state.filterGroup.id;
+    if (this.state.filterOrder) filters.order = this.state.filterOrder;
     return filters;
   }
 

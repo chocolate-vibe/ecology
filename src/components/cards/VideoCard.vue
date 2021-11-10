@@ -9,7 +9,7 @@
   >
     <div
       :class="{ shine: loading, placeholder: loading }"
-      class="video-card__preview mb-6"
+      class="video-card__preview mb-3"
     >
       <img
         v-if="!loading"
@@ -25,7 +25,10 @@
         size="40"
         class="mr-3"
       />
-      <div>#{{ lessonId }} {{ teacher.lastName }} {{ teacher.firstName }} <br> {{ title }}  </div>
+      <div>
+        #{{ lessonId }} {{ teacher.lastName }} {{ teacher.firstName }} <br> {{ title }}
+        <div class="grey--text caption">{{ formattingTimeDate }}</div>
+      </div>
     </div>
   </v-card>
 </template>
@@ -41,14 +44,17 @@ import { ITeacher } from '@/types/teacher';
   },
 })
 export default class VideoCard extends Vue {
-  @Prop({
-    default: false,
-  })
+  @Prop({ default: false })
   @Prop() protected readonly loading!: boolean;
   @Prop() protected readonly lessonId!: number;
   @Prop() protected readonly posterUrl!: string;
   @Prop() protected readonly title!: string;
   @Prop() protected readonly teacher!: ITeacher;
+  @Prop() protected readonly date!: string;
+
+  get formattingTimeDate() {
+    return this.$formattingDate(this.date);
+  }
 }
 </script>
 

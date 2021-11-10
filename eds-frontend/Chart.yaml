@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+name: eds-frontend
+version: 1.0.0
+description: eds frontend
+maintainers:
+  - name: Andrey Kumantsov
+    email: ardolo@yandex.ru
+    appVersion: 1.0 

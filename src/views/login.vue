@@ -14,6 +14,7 @@
           :rules="emailRules"
           label="Email"
           required
+          autocomplete="on"
         />
         <v-text-field
           v-model="password"
@@ -21,6 +22,7 @@
           label="Пароль"
           type="password"
           required
+          autocomplete="on"
         />
       </v-form>
     </v-card-text>
@@ -29,9 +31,9 @@
         :disabled="!isValid"
         @click="signIn"
         color="success"
-        class="rounded-0"
         large
         width="100%"
+        tile
       >
         Войти
       </v-btn>

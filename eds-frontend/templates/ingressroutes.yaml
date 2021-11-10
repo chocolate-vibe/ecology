@@ -1,0 +1,77 @@
+{{ if .Values.IngressRoute | eq "True" }}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: web-{{ .Values.Domain }}-notls
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`{{ .Values.Domain }}`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: {{ .Release.Name }}
+      port: 80
+    middlewares:
+    - name: {{ .Release.Name}}-redirectscheme
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{.Release.Name}}-www-{{ .Values.Domain }}-notls
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`www.{{ .Values.Domain }}`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: {{ $.Release.Name }}
+      port: 80
+    middlewares:
+    - name: {{.Release.Name}}-redirectscheme
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{.Release.Name}}-www-{{ .Values.Domain }}-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`www.{{ .Values.Domain }}`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: {{ $.Release.Name }}
+      port: 80
+    middlewares:
+    - name: {{.Release.Name}}-redirectmain
+  tls:
+    secretName: {{ .Values.Domain | replace "." "-"}}-tls
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: web-{{ .Values.Domain }}-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`{{ .Values.Domain }}`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: {{ .Release.Name }}
+      port: 80
+{{ if .Values.WhiteList.Enabled | eq "True"}}
+    middlewares:
+    - name: {{ .Release.Name}}-sizelimit
+    - name: {{ .Release.Name}}-ipwhitelist
+{{ end }}
+  tls:
+    secretName: {{ .Values.Domain | replace "." "-"}}-tls
+
+{{ end }}

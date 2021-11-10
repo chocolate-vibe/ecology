@@ -1,0 +1,6 @@
+Domain: eds.umax.dev
+IngressRoute: "True"
+JOB_activeDeadlineSeconds: 30000
+WhiteList:
+  Enabled: 'False'
+  IPs: "['217.67.187.170','84.201.170.79','10.250.0.0/16']"

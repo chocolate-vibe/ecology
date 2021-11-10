@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: {{ .Values.RegistryConfig }}
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-registry
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation
+type: kubernetes.io/dockerconfigjson

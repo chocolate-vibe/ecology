@@ -11,7 +11,7 @@
       :append-outer-icon="
         !isMyComment ? '' : editable ? 'mdi-delete' : 'mdi-pencil'
       "
-      :append-icon="editable && text && !rulesBroken ? 'check' : ''"
+      :append-icon="editable && text && !rulesBroken ? 'mdi-check' : ''"
       @click:append-outer="() => editComment()"
       @click:append="() => saveComment()"
       :readonly="!editable"

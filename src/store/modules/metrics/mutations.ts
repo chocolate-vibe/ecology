@@ -1,9 +1,8 @@
 import { Mutations } from 'vuex-smart-module';
 import { MetricState } from './state';
 import { ILesson } from '@/types/lesson';
-import { IMetricData, ITextMetric, VisualizationComponents } from '@/types/metric';
+import { IMetricData, ITextMetric, IVisualMetric, VisualizationComponents } from '@/types/metric';
 import { store } from '@/store';
-
 
 export class MetricMutations extends Mutations<MetricState> {
   setLesson(lessonData: ILesson | undefined) {
@@ -14,9 +13,9 @@ export class MetricMutations extends Mutations<MetricState> {
 
   setMetrics(metricsData: Array<IMetricData> | undefined) {
     if (metricsData !== undefined) {
-      const metrics: typeof this.state.renderListMetrics = {};
+      const metrics: { [section: number]: { [subsection: number]: IVisualMetric } } = {};
       const textMetrics: Array<ITextMetric> = [];
-      const sections: typeof this.state.sections = {};
+      const sections: { [section: number]: string } = {};
       metricsData.forEach((metric) => {
         try {
           const { subsection, id, lessonId, value, visualType, metricType } = metric;

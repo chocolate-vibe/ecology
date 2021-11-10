@@ -9,4 +9,5 @@ export interface ILesson {
   fps?: number;
   framesCount?: number;
   educationGroup: IEducationGroup;
+  updatedAt: string;
 }

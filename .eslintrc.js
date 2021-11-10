@@ -3,14 +3,16 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
-    'plugin:vue/essential',
-    '@vue/airbnb',
-    '@vue/typescript/recommended',
-  ],
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaVersion: 2020,
+    parser: '@typescript-eslint/parser',
   },
+  extends: [
+    'airbnb-base',
+    '@vue/typescript',
+    'plugin:vue/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -20,7 +22,7 @@ module.exports = {
     'lines-between-class-members': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
-    "linebreak-style": 0,
+    'linebreak-style': 0,
     'max-len': 'off',
     'object-curly-newline': 'off',
     'no-param-reassign': 'off',
@@ -28,6 +30,15 @@ module.exports = {
     'no-plusplus': 'off',
     radix: 'off',
     'import/no-unresolved': 'off',
-    'import/no-cycle': 'off'
+    'import/no-cycle': 'off',
+    'import/extensions': 'off',
+
+    'vue/component-name-in-template-casing': ['error', 'kebab-case'],
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/html-closing-bracket-spacing': ['error', {
+      startTag: 'never',
+      endTag: 'never',
+      selfClosingTag: 'always',
+    }],
   },
 };

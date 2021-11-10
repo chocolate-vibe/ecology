@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  selector:
+    app: eds
+    component: frontend
+    release: {{ .Release.Name }}
+  ports:
+  - name: frontend
+    port: 80
+    targetPort: 3000

@@ -1,17 +1,19 @@
 <template>
-  <v-navigation-drawer v-if="user" expand-on-hover app width="270" class="drawer">
+  <v-navigation-drawer
+    v-if="user && !isLoginPage"
+    expand-on-hover
+    app
+    width="270"
+    class="drawer"
+  >
     <v-list>
       <v-list-item link class="px-2 list-item">
         <v-list-item-avatar>
-          <user-avatar
-            :user="user"
-            class="mr-2 mt-1"
-            size="40"
-          />
+          <user-avatar :user="user" class="mr-2 mt-1" size="40" />
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            {{ user.lastName }} {{ user.firstName }}
+            {{ user.firstName }} {{ user.lastName }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-subtitle-1">
             {{ user.role.description }}
@@ -56,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import UserAvatar from '@/components/UserAvatar.vue';
 import { store } from '@/store';
 import { IUser } from '@/types/user';
@@ -84,8 +86,17 @@ export default class Drawer extends Vue {
     },
   ];
 
+  @Watch('user')
+  stateUser(user: IUser) {
+    console.log(user);
+  }
+
   get user(): IUser | undefined {
     return store.auth.getters.user;
+  }
+
+  get isLoginPage() {
+    return this.$route.path.startsWith('/login');
   }
 
   get filtredList() {
@@ -97,7 +108,7 @@ export default class Drawer extends Vue {
     });
   }
 
-  async logout() {
+  logout() {
     store.auth.mutations.logout();
     this.$router.push('/login');
   }

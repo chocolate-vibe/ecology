@@ -35,7 +35,7 @@
       v-model="enteredText"
       :rules="rules"
       :label="rulesBroken? 'Превышено число символов 255' : 'Добавить комментарий'"
-      :append-icon="!enteredText || rulesBroken ? '' : 'send'"
+      :append-icon="!enteredText || rulesBroken ? '' : 'mdi-send'"
       @click:append="sendFeedback"
       filled
       counter

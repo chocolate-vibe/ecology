@@ -108,7 +108,7 @@
       </div>
       <!-- Scroll -->
       <div class="chat-scroll__wrap">
-        <div class="chat-scroll__button"/>
+        <div class="chat-scroll__button" />
       </div>
     </div>
   </div>

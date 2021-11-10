@@ -1,5 +1,5 @@
 <template>
-  <statistic-cards :data="dataPrepared"/>
+  <statistic-cards :data="dataPrepared" />
 </template>
 
 <script lang="ts">

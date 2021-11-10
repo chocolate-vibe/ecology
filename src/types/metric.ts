@@ -25,7 +25,7 @@ export type chartLineValue = { value: string, time: Array<number> }
 export type chartRadarValue = { key: string, value: number }
 export type chartDonutValue = { value: string, count: number }
 export type chartDonutExtendedValue = { value: string, count: number }
-export type chartHistExtendedValue = { value: string, time: Array<number> } //  ??
+export type chartHistExtendedValue = { value: string, time: Array<number> }
 
 export type buttonTimeValues = Array<buttonTimeValue>
 export type buttonIntervalsValues = Array<buttonIntervalsValue>
@@ -37,7 +37,7 @@ export type chartDonutExtendedValues = Array<chartDonutExtendedValue>
 export type chartHistExtendedValues = Array<chartHistExtendedValues>
 export type chartLineExtandedValues = { [username: string]: Array<IChatMessage> }
 
-export type metricValues = buttonTimeValues | buttonIntervalsValues | chartBarValues | chartLineValues | chartRadarValues | chartDonutValues | chartDonutExtendedValues | chartHistExtendedValues | chartLineExtandedValues | any
+export type metricValues = buttonTimeValues | buttonIntervalsValues | chartBarValues | chartLineValues | chartRadarValues | chartDonutValues | chartDonutExtendedValues | chartHistExtendedValues | chartLineExtandedValues
 export type metricValuesWithIntervals = buttonIntervalsValues
 export type metricValuesWithPoints = chartLineValues | buttonTimeValues | chartBarValues
 
@@ -45,7 +45,7 @@ export interface ITextMetric { unit: string, title: string, value: string | numb
 export interface IVisualMetric {
   id: number;
   lessonId: number;
-  value: metricValues;
+  value: metricValues | IChatMessage[] | undefined;
   visualization?: visualizationComponent
   text?: { [alias: string]: {unit: string, title: string, value: string | number} };
   title: string,
@@ -61,7 +61,7 @@ export interface IMetricData {
   verified?: boolean
   value: {
     text?: { [alias: string]: {unit: string, title: string, value: string | number} },
-    value?: metricValues,
+    value?: metricValues | IChatMessage[],
   };
   subsection: {
     id: number

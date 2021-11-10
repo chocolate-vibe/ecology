@@ -13,7 +13,7 @@
         v-text="subtitle"
         class="text-caption"
       />
-      <span v-text="`${value} ${unit}`"/>
+      <span v-text="`${value} ${unit}`" />
     </div>
     <v-btn
       :color="color"

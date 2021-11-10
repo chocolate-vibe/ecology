@@ -1,80 +1,81 @@
 <template>
-    <div>
-      <div class="top-bar">
-        <div class="d-flex justify-space-beetween align-center pt-4">
-          <v-combobox
-            v-model="filterTeamLeader"
-            :items="teamLeaders"
-            clearable
-            label="Выберите тимлидера"
-            item-text="fullName"
-            item-value="id"
-            color="green"
-            outlined
-            background-color="grey darken-4"
-            hide-details
-            @change="selectTeamLeader()"
-            class="rounded-0"
-          />
-          <v-combobox
-            v-model="filterTeacher"
-            :items="teachers"
-            clearable
-            label="Выберите преподавателя"
-            item-text="fullName"
-            item-value="id"
-            color="green"
-            outlined
-            class="ml-3 rounded-0"
-            background-color="grey darken-4"
-            hide-details
-            @change="selectTeacher()"
-          />
-        </div>
+  <div class="pa-6 d-flex flex-column">
+    <div class="top-bar d-flex justify-space-beetween align-center pt-4">
+      <v-combobox
+        v-model="filterTeamLeader"
+        :items="teamLeaders"
+        clearable
+        label="Выберите тимлидера"
+        item-text="fullName"
+        item-value="id"
+        color="green"
+        outlined
+        background-color="grey darken-4"
+        hide-details
+        class="top-bar__teamleader rounded-0"
+        @change="selectTeamLeader()"
+      />
+      <v-combobox
+        v-model="filterTeacher"
+        :items="teachers"
+        clearable
+        label="Выберите преподавателя"
+        item-text="fullName"
+        item-value="id"
+        color="green"
+        outlined
+        class="top-bar__teacher ml-3 rounded-0"
+        background-color="grey darken-4"
+        hide-details
+        @change="selectTeacher()"
+      />
 
-        <v-combobox
-          v-model="filterGroup"
-          :items="educationGroups"
-          width="false"
-          clearable
-          label="Выберите группу"
-          color="green"
-          outlined
-          hide-details
-          class="mt-4 rounded-0"
-          item-text="title"
-          item-value="id"
-          background-color="grey darken-4"
-          @change="selectGroup()"
+      <v-combobox
+        v-model="filterGroup"
+        :items="educationGroups"
+        width="false"
+        clearable
+        label="Выберите группу"
+        color="green"
+        outlined
+        hide-details
+        class="top-bar__group ml-3 rounded-0"
+        item-text="title"
+        item-value="id"
+        background-color="grey darken-4"
+        @change="selectGroup()"
+      />
+    </div>
+    <sort-button
+      class="align-self-end my-3"
+      @change="(order) => selectOrder(order)"
+    />
+    <div>
+      <div class="video-list__container d-flex flex-wrap">
+        <video-card
+          v-for="(lesson, index) in lessons"
+          :key="`${lesson.id}_${index}`"
+          :lesson-id="lesson.id"
+          :title="lesson.title"
+          :teacher="lesson.educationGroup.teacher"
+          :poster-url="lesson.previewSource"
+          :date="lesson.updatedAt"
+          :loading="isLoading"
+          class="video-list__card mb-6"
         />
       </div>
-      <div class="pa-6">
-        <div
-          class="video-list__container d-flex flex-wrap justify-space-around"
-        >
-          <video-card
-            v-for="(lesson, index) in lessons"
-            :key="`${lesson.id}_${index}`"
-            :lesson-id="lesson.id"
-            :title="lesson.title"
-            :teacher="lesson.educationGroup.teacher"
-            :poster-url="lesson.previewSource"
-            :loading="isLoading"
-            class="video-list__card mb-6"
-          />
-        </div>
-      </div>
-      <infinite-loading
-        v-if="!getStateScroll"
-        spinner="waveDots"
-        class="grey--text"
-        @infinite="fetchNextLessons"
-      >
-        <span slot="no-more"/>
-        <span slot="no-results">Нет результата...</span>
-        <span slot="error">Ошибка...</span>
-      </infinite-loading>
     </div>
+    <infinite-loading
+      v-if="!getStateScroll"
+      spinner="waveDots"
+      class="grey--text"
+      @infinite="fetchNextLessons"
+    >
+      <span slot="no-more" />
+      <span slot="no-results">Нет результата...</span>
+      <span slot="error">Ошибка...</span>
+    </infinite-loading>
+  </div>
 </template>
 
 <script lang="ts">
@@ -87,11 +88,13 @@ import { IEducationGroup } from '@/types/educationGroup';
 import { store } from '@/store';
 // Components
 import VideoCard from '@/components/cards/VideoCard.vue';
+import SortButton from '@/components/SortButton.vue';
 
 @Component({
   components: {
     VideoCard,
     InfiniteLoading,
+    SortButton,
   },
 })
 export default class LessonsPage extends Vue {
@@ -131,6 +134,16 @@ export default class LessonsPage extends Vue {
   }
   set filterGroup(val: IEducationGroup | null) {
     store.main.mutations.setGroupFilter(val);
+  }
+
+  /**
+   * Состояние фильтра порядка по дате
+   */
+  get filterOrder(): string {
+    return store.main.state.filterOrder;
+  }
+  set filterOrder(val: string) {
+    store.main.mutations.setOrderFilter(val);
   }
 
   get lessons() {
@@ -201,6 +214,12 @@ export default class LessonsPage extends Vue {
     }
   }
 
+  async selectOrder(order: string) {
+    if (this.filterOrder === order) return;
+    this.filterOrder = order;
+    await store.main.actions.fetchLessonsByFilter();
+  }
+
   /**
    * При скролле страницы подгружает еще уроки
    */
@@ -224,8 +243,16 @@ export default class LessonsPage extends Vue {
 <style lang="scss" scoped>
 .top-bar {
   position: relative;
-  padding: 3px 25px;
-  width: 50%;
+  width: 100%;
+  &__teamleader {
+    flex: 1 1 auto;
+  }
+  &__teacher {
+    flex: 1 1 auto;
+  }
+  &__group {
+    flex: 5 1 auto;
+  }
 }
 .list {
   overflow-y: auto;
@@ -259,13 +286,13 @@ export default class LessonsPage extends Vue {
   max-width: calc(100vw - 125px);
 }
 
-h3 {
-  padding: 0.5%;
-}
-
 .video-list {
   &__card {
-    flex-basis: 23%;
+    flex-basis: 23.5%;
+    margin-right: 20px;
+    &:nth-child(4n+4) {
+      margin-right: 0;
+    }
   }
 }
 </style>

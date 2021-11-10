@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: '{{ .Values.Domain | replace "." "-"}}'
+spec:
+  dnsNames: 
+    - {{ .Values.Domain }}
+    - www.{{ .Values.Domain }}
+  secretName: {{ .Values.Domain | replace "." "-"}}-tls
+  issuerRef:
+    name: cert-manager-google-issuer
+    kind: ClusterIssuer

@@ -15,5 +15,6 @@ export class MainState {
   filterTeamLeader: ITeacher | null = null;
   filterTeacher: ITeacher | null = null;
   filterGroup: IEducationGroup | null = null;
+  filterOrder = 'DESC';
   offset = 0;
 }

@@ -18,7 +18,7 @@
       :class="{ scrollbar: scrollbar, drag: drag }"
       class="horizontal-scroll d-flex flex-nowrap"
     >
-      <slot/>
+      <slot />
     </div>
     <v-btn
       v-if="arrows"

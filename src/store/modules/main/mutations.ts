@@ -17,15 +17,15 @@ function setFullNames(teacher: ITeacher) {
 
 export class MainMutations extends Mutations<MainState> {
   setTeamLeadersWithLessons(teamLeaders: ITeacher[] | []) {
-    this.state.teamLeadersWithLessons = teamLeaders.map(teamLeader => setFullNames(teamLeader));
+    this.state.teamLeadersWithLessons = teamLeaders.map((teamLeader) => setFullNames(teamLeader));
   }
 
   setTeachersWithLessons(teachers: ITeacher[] | []) {
-    this.state.teachersWithLessons = teachers.map(teacher => setFullNames(teacher));
+    this.state.teachersWithLessons = teachers.map((teacher) => setFullNames(teacher));
   }
 
   setTeachersByTeamLeader(teachersByTeamLeader: ITeacher[] | []) {
-    this.state.teachersByTeamLeader = teachersByTeamLeader.map(teacher => setFullNames(teacher));
+    this.state.teachersByTeamLeader = teachersByTeamLeader.map((teacher) => setFullNames(teacher));
   }
 
   setEducationGroupsWithLessons(groups: IEducationGroup[] | []) {
@@ -71,12 +71,11 @@ export class MainMutations extends Mutations<MainState> {
     this.state.filterGroup = group;
   }
 
+  setOrderFilter(sort: string) {
+    this.state.filterOrder = sort;
+  }
+
   resetOffset() {
     this.state.offset = 0;
   }
-
-  // private addFullName(teacher: ITeacher) {
-  //   teacher.fullName = `${teacher.lastName} ${teacher.firstName}`;
-  //   return teacher;
-  // }
 }

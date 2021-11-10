@@ -6,6 +6,9 @@
     <video
       ref="video"
       :poster="poster"
+      :class="{ 'zoom-face': zoomFace, fullscreen: fullscreen }"
+      class="video"
+      preload="auto"
       @loadedmetadata="loadedmetadata()"
       @play="
         isPlay = true;
@@ -16,9 +19,6 @@
       @progress="bufferProgress()"
       @click="togglePlay()"
       @canplay="loading = false"
-      :class="{ 'zoom-face': zoomFace, fullscreen: fullscreen }"
-      class="video"
-      preload="auto"
     >
       <source :src="src">
     </video>
@@ -26,11 +26,11 @@
       :class="{
         hide: (holdOnSlider && isPlayingBeforeHoldOnSlider) || isPlay,
       }"
-      @click="togglePlay()"
       class="playback-animation toggle"
+      @click="togglePlay()"
     >
       <v-icon x-large>
-        {{ !isPlayed ? 'mdi-play' : isPlay ? 'mdi-play' : 'mdi-pause' }}
+        {{ !isPlayed ? "mdi-play" : isPlay ? "mdi-play" : "mdi-pause" }}
       </v-icon>
     </div>
     <div
@@ -49,19 +49,16 @@
       id="video-controls"
       class="video-controls"
     >
-      <div class="video-controls-background"/>
+      <div class="video-controls-background" />
       <div
         ref="time-progress"
-        @mousemove="updateTimeTooltip"
         class="time-progress"
+        @mousemove="updateTimeTooltip"
       >
         <v-slider
           id="video-progress"
           v-model="currentTime"
-          @click="() => setCurrentTime(currentTime)"
           :max="duration"
-          @mousedown="mousedownSlider()"
-          @mouseup="mouseupSlider()"
           :loading="loading ? 'error' : false"
           :readonly="loading"
           loader-height="4"
@@ -69,6 +66,9 @@
           class="video-progress"
           hide-details
           min="0"
+          @click="() => setCurrentTime(currentTime)"
+          @mousedown="mousedownSlider()"
+          @mouseup="mouseupSlider()"
         />
         <div
           ref="time-tooltip"
@@ -87,51 +87,51 @@
       <div class="bottom-controls">
         <div class="left-controls">
           <button
-            @click="prevInterval"
-            :data-title="intervals ? 'Предыдущий интервал' : 'Интервалы не установлены'"
+            :data-title="
+              intervals ? 'Предыдущий интервал' : 'Интервалы не установлены'
+            "
             :disabled="!intervals"
+            @click="prevInterval"
           >
-            <v-icon>
-              mdi-skip-previous
-            </v-icon>
+            <v-icon> mdi-skip-previous </v-icon>
           </button>
           <button
             ref="play"
-            @click="togglePlay()"
             :data-title="isPlay ? 'Пауза' : 'Смотреть'"
+            @click="togglePlay()"
           >
             <v-icon x-large>
               {{
                 (holdOnSlider && isPlayingBeforeHoldOnSlider) || isPlay
-                  ? 'mdi-pause'
-                  : 'mdi-play'
+                  ? "mdi-pause"
+                  : "mdi-play"
               }}
             </v-icon>
           </button>
           <button
-            @click="nextInterval"
-            :data-title="intervals ? 'Следующий интервал' : 'Интервалы не установлены'"
+            :data-title="
+              intervals ? 'Следующий интервал' : 'Интервалы не установлены'
+            "
             :disabled="!intervals"
+            @click="nextInterval"
           >
-            <v-icon>
-              mdi-skip-next
-            </v-icon>
+            <v-icon> mdi-skip-next </v-icon>
           </button>
 
           <div class="volume-controls mr-3">
             <button
-              @click="muted = !muted"
               :data-title="muted ? 'Включить звук' : 'Отключение звука'"
+              @click="muted = !muted"
             >
               <v-icon>
                 {{
                   muted
-                    ? 'mdi-volume-off'
+                    ? "mdi-volume-off"
                     : volume > 66
-                      ? 'mdi-volume-high'
+                      ? "mdi-volume-high"
                       : volume > 33
-                        ? 'mdi-volume-medium'
-                        : 'mdi-volume-low'
+                        ? "mdi-volume-medium"
+                        : "mdi-volume-low"
                 }}
               </v-icon>
             </button>
@@ -147,19 +147,19 @@
 
           <div class="time mr-3">
             <time id="time-elapsed">{{
-              currentTime ? $secondsToTime(currentTime) : '00:00:00'
+              currentTime ? $secondsToTime(currentTime) : "00:00:00"
             }}</time>
             <span> / </span>
             <time id="duration">{{ $secondsToTime(duration) }}</time>
           </div>
           <v-chip
             v-if="metricTitle"
-            @click:close="$emit('reset-intervals')"
             class="metric-title"
             close
             color="orange"
             outlined
             small
+            @click:close="$emit('reset-intervals')"
           >
             {{ metricTitle }}
           </v-chip>
@@ -167,9 +167,11 @@
 
         <div class="right-controls">
           <button
-            @click="zoomFace = !zoomFace"
-            :data-title="zoomFace ? 'Убрать приближение' : 'Приблизить web-камеру'"
+            :data-title="
+              zoomFace ? 'Убрать приближение' : 'Приблизить web-камеру'
+            "
             class="face__button"
+            @click="zoomFace = !zoomFace"
           >
             <v-icon
               :color="zoomFace ? 'green lighten-2' : 'white'"
@@ -180,16 +182,16 @@
             </v-icon>
           </button>
           <button
-            @click="togglePip()"
             :disabled="!supportPictureInPicture"
             :data-title="
               supportPictureInPicture
                 ? 'Мини-проигрыватель'
                 : 'Ваш браузер не поддерживает режим мини-проигрывателя'
             "
+            @click="togglePip()"
           >
             <v-icon
-              :color="!supportPictureInPicture ? 'grey darken-3' : 'white' "
+              :color="!supportPictureInPicture ? 'grey darken-3' : 'white'"
               class="icon-content-duplicate"
               large
             >
@@ -197,21 +199,25 @@
             </v-icon>
           </button>
           <button
-            @click="showSpeedList = !showSpeedList"
             data-title="Скорость воспроизведения"
             class="speed__button"
+            @click="showSpeedList = !showSpeedList"
           >
             <v-icon
-              :color="showSpeedList || speedList[speedIndx] !== 1 ? 'green lighten-2' : 'white'"
+              :color="
+                showSpeedList || speedList[speedIndx] !== 1
+                  ? 'green lighten-2'
+                  : 'white'
+              "
               large
               class="speed__icon"
             >
               mdi-play-speed
             </v-icon>
             <span
-              v-html="`x&nbsp;${speedList[speedIndx]}`"
               v-if="speedList[speedIndx] !== 1"
               class="speed__button-text green--text text--lighten-2"
+              v-html="`x&nbsp;${speedList[speedIndx]}`"
             />
           </button>
           <v-list
@@ -224,18 +230,18 @@
                 v-for="speed in speedList"
                 :key="`speed-${speed}`"
               >
-                <v-list-item-title v-text="speed === 1 ? 'Обычная' : speed"/>
+                <v-list-item-title v-text="speed === 1 ? 'Обычная' : speed" />
               </v-list-item>
             </v-list-item-group>
           </v-list>
           <button
-            @click="toggleFullScreen()"
             :data-title="
               fullscreen ? 'Выход из полноэкранного режима' : 'Во весь экран'
             "
+            @click="toggleFullScreen()"
           >
             <v-icon large>
-              {{ fullscreen ? 'mdi-fullscreen-exit' : 'mdi-fullscreen' }}
+              {{ fullscreen ? "mdi-fullscreen-exit" : "mdi-fullscreen" }}
             </v-icon>
           </button>
         </div>
@@ -245,9 +251,7 @@
 </template>
 
 <script lang="ts">
-import {
-  Component, Vue, Prop, Ref, Watch,
-} from 'vue-property-decorator';
+import { Component, Vue, Prop, Ref, Watch } from 'vue-property-decorator';
 import { metricValuesWithIntervals } from '@/types/metric';
 
 @Component
@@ -456,7 +460,9 @@ export default class videoPlayer extends Vue {
   public setIntervals(): void {
     if (this.loading) return;
     if (!this.intervals) return;
-    const intervals: metricValuesWithIntervals = this.sortInterval(this.intervals);
+    const intervals: metricValuesWithIntervals = this.sortInterval(
+      this.intervals,
+    );
     let innerColors = '';
     let lastPercentEnd = 0;
 
@@ -467,8 +473,12 @@ export default class videoPlayer extends Vue {
       const percentStart = (start * 100) / this.duration;
       const percentEnd = (end * 100) / this.duration;
 
-      const divEmpty = `<div style="width: ${(percentStart - lastPercentEnd).toFixed(2)}%;"></div>`;
-      const divColor = `<div class="interval-color" style="width: ${(percentEnd - percentStart).toFixed(2)}%;"></div>`;
+      const divEmpty = `<div style="width: ${(
+        percentStart - lastPercentEnd
+      ).toFixed(2)}%;"></div>`;
+      const divColor = `<div class="interval-color" style="width: ${(
+        percentEnd - percentStart
+      ).toFixed(2)}%;"></div>`;
       lastPercentEnd = percentEnd;
       innerColors += `${divEmpty}${divColor}`;
     });
@@ -485,7 +495,9 @@ export default class videoPlayer extends Vue {
   /**
    *  Обходной путь из-за бага с бесконечной сортировкой функции sort()
    */
-  sortInterval(intervalsList: metricValuesWithIntervals): metricValuesWithIntervals {
+  sortInterval(
+    intervalsList: metricValuesWithIntervals,
+  ): metricValuesWithIntervals {
     const intervalsFrom = intervalsList.map(({ from }) => from);
     intervalsFrom.sort((a, b) => a - b);
     const intervals = intervalsFrom.map((fromSort: number) => {
@@ -499,7 +511,9 @@ export default class videoPlayer extends Vue {
     if (this.intervals) {
       const currentIndex = this.findCurrentInterval(this.intervals);
       const lastIndex = this.intervals.length - 1;
-      const nextInretval = currentIndex === lastIndex ? this.intervals[0] : this.intervals[currentIndex + 1];
+      const nextInretval = currentIndex === lastIndex
+        ? this.intervals[0]
+        : this.intervals[currentIndex + 1];
       this.setCurrentTime(nextInretval.from);
     }
   }
@@ -508,7 +522,9 @@ export default class videoPlayer extends Vue {
     if (this.intervals) {
       const currentIndex = this.findCurrentInterval(this.intervals);
       const lastIndex = this.intervals.length - 1;
-      const prevInretval = currentIndex === 0 || currentIndex === -1 ? this.intervals[lastIndex] : this.intervals[currentIndex - 1];
+      const prevInretval = currentIndex === 0 || currentIndex === -1
+        ? this.intervals[lastIndex]
+        : this.intervals[currentIndex - 1];
       this.setCurrentTime(prevInretval.from);
     }
   }
@@ -519,7 +535,7 @@ export default class videoPlayer extends Vue {
   }
 
   mounted() {
-    setTimeout(() => this.bufferProgress(), 4000);
+    // setTimeout(() => this.bufferProgress(), 4000);
     document.addEventListener('keydown', this.keydown);
     document.addEventListener('keyup', this.keyup);
   }
@@ -683,7 +699,7 @@ button {
   border: none;
   outline: none;
   &:hover:not(:disabled) {
-      filter: brightness(75%);
+    filter: brightness(75%);
   }
   &:not(:disabled) {
     cursor: pointer;
@@ -760,7 +776,7 @@ button:hover::before {
     position: absolute;
     top: -7px;
     left: 27px;
-    color: '#fff';
+    color: "#fff";
     font-size: 10px;
   }
   &__list {

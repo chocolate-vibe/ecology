@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: eds
+    component: frontend
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.REPLICA_COUNT }}
+  strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 3
+        maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: eds
+      component: frontend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      name: {{ .Release.Name }}-web-pod
+      labels:
+        app: eds
+        component: frontend
+        release: {{ .Release.Name }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Release.Name }}-registry
+      containers:
+        initContainers:
+          - name: init-sysctl
+            image: cr.yandex/crpk51ud2cjku2i8e2b6/busybox:latest
+            command:
+            - /bin/sh
+            - -c
+            - |
+              sysctl -w net.core.somaxconn=60000
+            securityContext:
+              privileged: true
+      containers:
+        - image: "{{ .Values.APP_IMAGE }}"
+          imagePullPolicy: Always
+          name: frontend
+          resources:
+            limits:
+              memory: "3Gi"
+            requests:
+              cpu: 100m                        
+                

@@ -1,0 +1,47 @@
+{{ if .Values.IngressRoute | eq "True" }}
+{{ if .Values.WhiteList.Enabled | eq "True"}}
+---
+#Whitelist
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{.Release.Name}}-ipwhitelist"
+spec:
+  ipWhiteList:
+    sourceRange: {{ .Values.WhiteList.IPs}}
+{{ end }}
+
+---
+# Redirect to https
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{.Release.Name}}-redirectscheme"
+spec:
+  redirectScheme:
+    scheme: https
+
+---
+# Redirect to main domain
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{.Release.Name}}-redirectmain"
+spec:
+  redirectRegex:
+    regex: ^https://www\.(.*)
+    replacement: https://${1}
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{.Release.Name}}-sizelimit"
+spec:
+  buffering:
+    maxRequestBodyBytes:  33000000
+    memRequestBodyBytes:  33000000
+    maxResponseBodyBytes: 50000000
+    memResponseBodyBytes: 50000000
+    retryExpression: "IsNetworkError() && Attempts() < 2"
+{{ end }}

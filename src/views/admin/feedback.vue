@@ -17,7 +17,7 @@
       >
         <v-card class="feedback__user rounded-0">
           <v-list-item style="min-height: 50px">Все</v-list-item>
-          <v-divider/>
+          <v-divider />
         </v-card>
         <v-card
           v-for="(user, index) in users"
@@ -33,13 +33,13 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title v-html="$getUserFullName(user)"/>
+              <v-list-item-title v-html="$getUserFullName(user)" />
               <v-list-item-subtitle>
                 {{ user.comments[user.comments.length - 1].comment }}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          <v-divider/>
+          <v-divider />
         </v-card>
       </v-list-item-group>
     </v-list>
@@ -75,14 +75,14 @@
                 @click="openLessonPage(comment.lessonId)"
                 data-tooltip="Перейти к уроку"
               >
-                <v-list-item-title v-text="$getUserFullName(comment.user)"/>
+                <v-list-item-title v-text="$getUserFullName(comment.user)" />
 
                 <v-list-item-subtitle
                   v-text="`Урок ${comment.lessonId}`"
                   class="text--primary"
                 />
 
-                <v-list-item-subtitle v-text="comment.comment"/>
+                <v-list-item-subtitle v-text="comment.comment" />
               </v-list-item-content>
 
               <v-list-item-action>
@@ -101,7 +101,7 @@
                 </div>
               </v-list-item-action>
             </v-list-item>
-            <v-divider :key="`divider-${comment.id}`"/>
+            <v-divider :key="`divider-${comment.id}`" />
           </template>
         </v-list-item-group>
       </v-list>
