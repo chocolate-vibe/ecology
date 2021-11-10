@@ -5,25 +5,28 @@
         <div
           v-for="(name, indx) in labels"
           :key="`${indx}${name}`"
-          @click="selectedTab = name"
           :style="{
             background: name === selectedTab ? colors[name] : '',
             color: name === selectedTab ? 'black' : '',
           }"
           class="line-chart__tab py-1 px-2 mr-2"
+          @click="selectedTab = name"
         >
           {{ name }}
         </div>
       </div>
-      <apex-chart :options="chartOptions" :series="series" />
+      <apex-chart
+        :options="chartOptions"
+        :series="series"
+      />
     </div>
     <timestamp-buttons
       v-if="timestampsButtons[selectedTab]"
       :data="timestampsButtons[selectedTab].timestamps"
       :colors="timestampsButtons[selectedTab].colors"
       :tooltips="timestampsButtons[selectedTab].tooltips"
-      @set-video-time="(time) => $emit('set-video-time', time)"
       class="line-chart__right"
+      @set-video-time="(time) => $emit('set-video-time', time)"
     />
   </div>
 </template>

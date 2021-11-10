@@ -7,9 +7,16 @@
     class="drawer"
   >
     <v-list>
-      <v-list-item link class="px-2 list-item">
+      <v-list-item
+        link
+        class="px-2 list-item"
+      >
         <v-list-item-avatar>
-          <user-avatar :user="user" class="mr-2 mt-1" size="40" />
+          <user-avatar
+            :user="user"
+            class="mr-2 mt-1"
+            size="40"
+          />
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
@@ -27,7 +34,10 @@
 
     <v-divider />
 
-    <v-list dense nav>
+    <v-list
+      dense
+      nav
+    >
       <v-list-item
         v-for="item in filtredList"
         :key="item.title"

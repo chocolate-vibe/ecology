@@ -1,8 +1,8 @@
 <template>
   <v-card class="statistic-card pa-3 d-flex justify-space-between flex-column align-end text-right grey darken-3">
     <span
-      v-html="title"
       class="statistic-card__name text-caption font-weight-light grey--text"
+      v-html="title"
     />
     <v-divider
       class="statistic-card__divider my-2"
@@ -10,8 +10,8 @@
     />
     <div class="d-flex justify-space-between align-center statistic-card__value">
       <span
-        v-text="subtitle"
         class="text-caption"
+        v-text="subtitle"
       />
       <span v-text="`${value} ${unit}`" />
     </div>

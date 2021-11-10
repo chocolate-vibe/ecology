@@ -1,11 +1,11 @@
 <template>
   <v-card
-    @click="$router.push(`/lesson/${lessonId}`)"
     :loading="loading"
     elevation="10"
     outlined
     class="video-card"
     tile
+    @click="$router.push(`/lesson/${lessonId}`)"
   >
     <div
       :class="{ shine: loading, placeholder: loading }"

@@ -5,12 +5,12 @@
         <div
           v-for="(name, indx) in labels"
           :key="`${indx}${name}`"
-          @click="selectedTab = name"
           :style="{
             background: name === selectedTab ? colors[name] : '',
             color: name === selectedTab ? 'black' : ''
           }"
           class="line-chart__tab py-1 px-2 mr-2"
+          @click="selectedTab = name"
         >
           {{ name }}
         </div>
@@ -24,16 +24,16 @@
       <div
         v-for="param in text"
         :key="param.title"
-        v-text="`${param.title}: ${param.value}${param.unit}`"
         class="pb-2 text-right"
+        v-text="`${param.title}: ${param.value}${param.unit}`"
       />
       <chat
         :time="videoDuration"
         :messages="messagesByUser"
         :show-before-time="videoDuration"
-        @set-video-time="(time) => $emit('set-video-time', time)"
         class="line-chart__chat mr-4"
         rewindable="true"
+        @set-video-time="(time) => $emit('set-video-time', time)"
       />
     </div>
   </div>

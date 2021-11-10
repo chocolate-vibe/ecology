@@ -1,5 +1,8 @@
 <template>
-  <v-app ma-0 pa-0>
+  <v-app
+    ma-0
+    pa-0
+  >
     <notify />
     <drawer />
     <component :is="layout">

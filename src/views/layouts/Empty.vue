@@ -1,6 +1,10 @@
 <template>
   <v-main>
-    <v-container fluid ma-0 pa-0>
+    <v-container
+      fluid
+      ma-0
+      pa-0
+    >
       <router-view />
     </v-container>
   </v-main>

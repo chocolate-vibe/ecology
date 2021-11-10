@@ -12,7 +12,7 @@
         v-model="selectedItem"
         color="primary"
         mandatory
-        :active-class="`${accent}--text`"
+        :active-class="`${$accent}--text`"
         class="list-item-group"
       >
         <v-card class="feedback__user rounded-0">
@@ -57,7 +57,7 @@
         />
         <v-list-item-group
           v-model="selectedComments[selectedItem]"
-          :active-class="`${accent}--text`"
+          :active-class="`${$accent}--text`"
           multiple
           class="list-item-group grey darken-4"
         >

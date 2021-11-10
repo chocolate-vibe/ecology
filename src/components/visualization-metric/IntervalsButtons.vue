@@ -7,9 +7,9 @@
       class="interval-button mr-2 mb-2"
     >
       <v-chip
-        @click="$emit('set-video-interval', { from, to })"
         class="black--text"
         color="grey"
+        @click="$emit('set-video-interval', { from, to })"
       >
         <v-icon left>mdi-motion-play</v-icon>
         {{ `${$secondsToTime(from)} - ${$secondsToTime(to)}` }}

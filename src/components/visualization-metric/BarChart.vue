@@ -8,8 +8,8 @@
     <timestamp-buttons
       :data="timestamps"
       :colors="colors"
-      @set-video-time="(time) => $emit('set-video-time', time)"
       class="bar-chart__right"
+      @set-video-time="(time) => $emit('set-video-time', time)"
     />
   </div>
 </template>

@@ -1,7 +1,14 @@
 <template>
   <v-main>
-    <v-container fluid ma-0 pa-0>
-      <navigation v-if="isAdmin" :tabs="tabs" />
+    <v-container
+      fluid
+      ma-0
+      pa-0
+    >
+      <navigation
+        v-if="isAdmin"
+        :tabs="tabs"
+      />
       <router-view />
     </v-container>
   </v-main>

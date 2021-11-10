@@ -7,9 +7,9 @@
       class="timestamp-button mr-2 mb-2"
     >
       <v-chip
-        @click="$emit('set-video-time', time)"
         :color="colors ? colors[index] : 'grey'"
         class="black--text"
+        @click="$emit('set-video-time', time)"
       >
         <v-icon left>mdi-motion-play</v-icon>
         {{ typeof time === 'number' ? $secondsToTime(time) : time }}

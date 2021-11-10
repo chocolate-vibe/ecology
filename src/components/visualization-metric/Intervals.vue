@@ -1,13 +1,13 @@
 <template>
   <div class="intervals">
     <div
-      v-html="titleText"
       class="mb-3"
+      v-html="titleText"
     />
     <interval-buttons
-      @set-video-interval="(time) => $emit('set-video-interval', time)"
       :data="data"
       class="interval-buttons"
+      @set-video-interval="(time) => $emit('set-video-interval', time)"
     />
   </div>
 </template>

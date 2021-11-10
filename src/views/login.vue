@@ -29,11 +29,11 @@
     <v-card-actions class="pa-4">
       <v-btn
         :disabled="!isValid"
-        @click="signIn"
         color="success"
         large
         width="100%"
         tile
+        @click="signIn"
       >
         Войти
       </v-btn>

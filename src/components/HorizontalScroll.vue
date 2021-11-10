@@ -5,11 +5,11 @@
   >
     <v-btn
       v-if="arrows"
-      @click="clickRight"
       class="horizontal-scroll__button left"
       fab
       small
       color="grey darken-3"
+      @click="clickRight"
     >
       <v-icon>mdi-chevron-left</v-icon>
     </v-btn>
@@ -22,11 +22,11 @@
     </div>
     <v-btn
       v-if="arrows"
-      @click="clickLeft"
       class="horizontal-scroll__button right"
       fab
       small
       color="grey darken-3"
+      @click="clickLeft"
     >
       <v-icon>mdi-chevron-right</v-icon>
     </v-btn>
