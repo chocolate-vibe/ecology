@@ -9,7 +9,6 @@ import colorsPlugin from '@/plugins/colors';
 import globalPlugin from '@/plugins/global';
 import formattingPlugin from '@/plugins/formatting';
 
-import '@/assets/styles/map.scss';
 import '@/assets/styles/_vars.scss';
 
 Vue.config.productionTip = false;

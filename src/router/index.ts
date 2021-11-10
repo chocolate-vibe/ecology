@@ -51,10 +51,8 @@ const router = new VueRouter({
   routes,
 });
 
-/**
- * Проверка у пользователя соответствующей роли
- */
 router.beforeEach((to, from, next) => {
+  document.title = to?.meta?.title ?? 'EDS Анализ видео';
   const roles = to?.meta?.roles;
   const token = localStorage.getItem('auth_token');
   if (roles && !token) next('/login');
